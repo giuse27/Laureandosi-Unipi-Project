@@ -2,8 +2,20 @@
 
 Ovviamente per fare del dettaglio i singoli casi d’uso è necessario aver già fatto il diagramma dei casi d’uso
 
-## Tutorial semplice per creare il diagramma dei casi d’uso
+## Aggiungere dettagli ai casi d'uso
 
 1. Per aprire la visualizzazione dettagliata dei casi d’uso fare tasto destro sul caso d’uso su cui vogliamo lavorare e cliccare su “Open Use Case Details …”
     
     ![image.png](./resources/02-img00.png)
+
+2. Scrivere il flusso degli eventi di quel determinato caso d'uso selezionando la scheda "Flow of Events". Se compare il riquadro verde come in figura si può disattivare facilmente cliccando sul pentagono verde con il '?' all'interno della barra degli strumenti.
+
+    ![alt text](./resources/02-img01.png)
+
+    Nel flusso degli eventi bisogna fornire una lista di istruzioni (step) che descrivono il comportamento del caso d'uso. Ci possono quindi essere scambi di azioni tra attori e system, oltre che step condizionali (if) e cicli (for).
+
+3. Dopo aver scritto il flusso degli eventi dobbiamo indicare precondizioni e postcondizioni sulla scheda "details"
+    
+    ![image.png](./resources/02-img02.png)
+
+    Precondizioni e postcondizioni rappresentano tutte quelle condizioni che devono essere verificate prima che il caso d'uso sia eseguito e tutte le conseguenze dovute all'esecuzione dello stesso.
