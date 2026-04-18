@@ -14,7 +14,7 @@ Ovviamente per fare del dettaglio i singoli casi d’uso è necessario aver già
 
     Nel flusso degli eventi bisogna fornire una lista di istruzioni (step) che descrivono il comportamento del caso d'uso. Ci possono quindi essere scambi di azioni tra attori e system, oltre che step condizionali (if) e cicli (for).
 
-3. Dopo aver scritto il flusso degli eventi dobbiamo indicare precondizioni e postcondizioni sulla scheda "details"
+3. Dopo aver scritto il flusso degli eventi dobbiamo indicare precondizioni e postcondizioni sulla scheda "Details"
     
     ![image.png](./resources/02-img02.png)
 
