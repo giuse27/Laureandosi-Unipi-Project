@@ -1,3 +1,5 @@
+# 02 - Casi d'uso dettagliati
+
 ## Prerequisiti
 
 Ovviamente per fare del dettaglio i singoli casi d’uso è necessario aver già fatto il diagramma dei casi d’uso
@@ -10,7 +12,7 @@ Ovviamente per fare del dettaglio i singoli casi d’uso è necessario aver già
 
 2. Scrivere il flusso degli eventi di quel determinato caso d'uso selezionando la scheda "Flow of Events". Se compare il riquadro verde come in figura si può disattivare facilmente cliccando sul pentagono verde con il '?' all'interno della barra degli strumenti.
 
-    ![alt text](./resources/02-img01.png)
+    ![image.png](./resources/02-img01.png)
 
     Nel flusso degli eventi bisogna fornire una lista di istruzioni (step) che descrivono il comportamento del caso d'uso. Ci possono quindi essere scambi di azioni tra attori e system, oltre che step condizionali (if) e cicli (for).
 
