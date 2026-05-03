@@ -15,5 +15,4 @@
 | 19/04/2026 | 14:41 | 19:17 | Ho terminato l'aggiunta dei dettagli di tutti i casi d'uso, ovvero l'aggiunta delle precondizioni, delle postcondizioni e del flusso degli eventi. Ho rimosso l'"if" dal flusso di esecuzione di "GeneraProspettoLaurea" perché non ho più ritenuto importante la gestione di presunti errori essendo un progetto didattico e avendo già precondizioni ideali alla generazione del prospetto. Ho aggiunto l'attesa di 13 secondi nell'invio delle mail di "InviaProspettoLaureando" in accordo con il requisito N12 |
 | 03/05/2026 | 14:55 | --:-- | Ho iniziato la costruzione delle prime CRC card su Visual Paradigm. Ho inserito la classe " GestioneCarrieraStudente " come classe collaboratrice di diverse classi all'interno delle CRC card. Assodato il fatto che " Gestione Carriera Studente " è un servizio dell'università di Pisa già pronto all'uso, ho deciso di non implementare una CRC card specifica per questa classe, in quanto la ritenevo piuttosto ridondante, ma nonostante ciò la classe è stata inserita laddove serve come collaboratrice. |
 | --/--/---- | --:-- | --:-- | descrizione |
-| --/--/---- | --:-- | --:-- | descrizione |
 
