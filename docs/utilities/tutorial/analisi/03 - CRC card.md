@@ -118,24 +118,26 @@ L'immagine SVG (immagine vettoriale) adesso esportata contiene una filgrana dovu
 > ![image.png](./resources/03-img10.png)
 >
 > Passando il mouse su `g font-size="10" transform="rotate(-45) translate(-1123.479,0)" ...` tutta la filgrana sarà evidenziata all'interno del browser, segno che abbiamo individuato il blocco esatto.
->
-> Quindi, nel mio caso (e spero sia così in generale), la filgrana avrà una forma di questo tipo:
->
-> ```html
-> <g font-size="10" transform="rotate(-45) translate(-1123.479,0)" fill-opacity="1" fill="rgb(120,120,120)" text-rendering="geometricPrecision" font-family="&apos;Tahoma&apos;" stroke="rgb(120,120,120)" stroke-opacity="1"
+
+Quindi, nel mio caso (e spero sia così in generale), la filgrana avrà una forma di questo tipo:
+
+```html
+<g font-size="10" transform="rotate(-45) translate(-1123.479,0)" fill-opacity="1" fill="rgb(120,120,120)" text-rendering="geometricPrecision" font-family="&apos;Tahoma&apos;" stroke="rgb(120,120,120)" stroke-opacity="1"
     ><text x="0" xml:space="preserve" y="0" stroke="none"
       >Visual Paradigm for UML Enterprise Edition [evaluation copy] </text
       ><text x="291" xml:space="preserve" y="0" stroke="none"
-      >Visual Paradigm for UML Enterprise Edition [evaluation copy] </text>
-> ...
-> ...
-> ...
-> <text x="1455" xml:space="preserve" y="1768" stroke="none"
+      >Visual Paradigm for UML Enterprise Edition [evaluation copy] </text
+      >
+    ...
+    ...
+    ...
+      ><text x="1455" xml:space="preserve" y="1768" stroke="none"
       >Visual Paradigm for UML Enterprise Edition [evaluation copy] </text
       ><text x="1746" xml:space="preserve" y="1768" stroke="none"
       >Visual Paradigm for UML Enterprise Edition [evaluation copy] </text
-    ></g>
-> ```
+    ></g
+    >
+```
 
 Dopo aver individuato il blocco di testo che contiene la filgrana è sufficiente riaprire il file svg con il blocco note e successivamente eliminarlo e salvare il file.
 
