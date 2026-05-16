@@ -74,3 +74,69 @@ L’unico prerequisito è la stesura dei requisiti comprensiva di analisi testua
 Dopo aver fatto ciò si ripete il procedimento per tutte le CRC card, andando a chiedersi ogni volta, che informazioni deve conoscere la classe e quali sono le sue funzioni principali.
 
 Un piccolo trucco può essere quello di scrivere tutte le CRC card all'inizio e successivamente andarle a riempire.
+
+> **NOTA BENE**  
+> L'esempio mostrato è valido ai fini del tutorial, ma la CRC card **CarrieraLaureando** all'interno del progetto è stata poi modificata, dividendo l'anagagrafica dalla carriera, a causa del funzionamento delle richieste a GestioneCarrieraStudente.
+
+## Esportazione delle CRC card
+
+Dopo aver completato tutte le CRC card, sistemarle su visual paradigm andando a comporre quello che sarà il layout di esportazione. 
+
+Dato che le CRC card saranno inserite all'interno del documento word condiviso con il professore, io ho sistemato le mie CRC card in un layout più o meno simile a quello di un foglio A4.
+
+Per esportare le CRC card da Visual Paradigm accedere al file contenente le card che abbiamo già creato e sistemato in precedenza,
+
+![image.png](./resources/03-img05.png)
+
+cliccare poi con il tasto destro su uno spazio vuoto sullo sfondo delle CRC card, cliccare su "Export", e poi su "Export as Image..."
+
+![image.png](./resources/03-img06.png)
+
+Nella schermata che adesso compare, selezionare il tipo SVG e il percorso file.
+
+![image.png](./resources/03-img07.png)
+
+Infine, cliccare su Export.
+
+### Rimozione della filgrana
+
+L'immagine SVG (immagine vettoriale) adesso esportata contiene una filgrana dovuta alla licenza del software. Qui è riportato un mini tutorial per rimuovere manualmente la filgrana:
+
+> **NOTA BENE**  
+> Il metodo a breve descritto ha funzionato nel mio caso, ma non riesco a garantire che funzioni in tutti i casi, pertanto prima di descrivere il metodo che ho usato nel mio caso, qui spiego in breve come riconoscere il blocco di testo da rimuovere e che contiene la filgrana.
+>
+> Per prima cosa apriamo l'immagine SVG con il browser (io uso Edge). Successivamente andare sullo strumento ispeziona del browser:
+>
+> ![image.png](./resources/03-img08.png)
+>
+> Da qui tramite il tastino per selezionare gli elementi dello strumento ispeziona, passiamo sopra un pezzo della filgrana finché non viene evidenziato il blocco che la contiene:
+>
+> ![image.png](./resources/03-img09.png)
+>
+> A questo punto il gioco è fatto perché tutta la filgrana è l'elenco contenuto in questo blocco:
+>
+> ![image.png](./resources/03-img10.png)
+>
+> Passando il mouse su `g font-size="10" transform="rotate(-45) translate(-1123.479,0)" ...` tutta la filgrana sarà evidenziata all'interno del browser, segno che abbiamo individuato il blocco esatto.
+>
+> Quindi, nel mio caso (e spero sia così in generale), la filgrana avrà una forma di questo tipo:
+>
+> ```html
+> <g font-size="10" transform="rotate(-45) translate(-1123.479,0)" fill-opacity="1" fill="rgb(120,120,120)" text-rendering="geometricPrecision" font-family="&apos;Tahoma&apos;" stroke="rgb(120,120,120)" stroke-opacity="1"
+    ><text x="0" xml:space="preserve" y="0" stroke="none"
+      >Visual Paradigm for UML Enterprise Edition [evaluation copy] </text
+      ><text x="291" xml:space="preserve" y="0" stroke="none"
+      >Visual Paradigm for UML Enterprise Edition [evaluation copy] </text>
+> ...
+> ...
+> ...
+> <text x="1455" xml:space="preserve" y="1768" stroke="none"
+      >Visual Paradigm for UML Enterprise Edition [evaluation copy] </text
+      ><text x="1746" xml:space="preserve" y="1768" stroke="none"
+      >Visual Paradigm for UML Enterprise Edition [evaluation copy] </text
+    ></g>
+> ```
+
+Dopo aver individuato il blocco di testo che contiene la filgrana è sufficiente riaprire il file svg con il blocco note e successivamente eliminarlo e salvare il file.
+
+Adesso, riaprendo l'immagine, si potranno visualizzare le CRC card senza filgrana.
