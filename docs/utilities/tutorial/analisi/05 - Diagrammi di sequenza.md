@@ -1,7 +1,7 @@
 # 05 - Diagrammi di sequenza
 
 > **NOTA PRELIMINARE**  
-> Questo tutorial è principalmente basato sulle spiegazioni di Gemini, ed è stato successivamente revisionato
+> Questo tutorial è principalmente basato sulle spiegazioni di Gemini, ed è stato successivamente revisionato.
 
 ## Cenni di Teoria
 
@@ -79,9 +79,13 @@ Se il tuo caso d'uso prevede una scelta (es. pagamento accettato o rifiutato):
 
 Vai nella Diagram Toolbar a sinistra e cerca l'icona Combined Fragment (o Alt/Loop).
 
+![image.png](./resources/05-img00.png)
+
 Cliccaci e poi disegna un rettangolo nel diagramma che racchiuda i messaggi coinvolti nella scelta.
 
-Nell'angolo in alto a sinistra del rettangolo comparirà un'etichetta (di default potrebbe dire seq o alt). Cliccaci per cambiarla in Alt (per if/else) o Loop.
+Nell'angolo in alto a sinistra del rettangolo comparirà un'etichetta (di default potrebbe dire seq o alt). Cliccaci con il tasto destro per cambiarla in Alt (per if/else), Opt (opzionale) o Loop.
+
+![image.png](./resources/05-img01.png)
 
 Se usi "Alt", apparirà una linea orizzontale tratteggiata per separare la condizione "Vero" (in alto) dalla condizione "Falso" (in basso). Fai doppio clic sulle condizioni tra parentesi quadre [ ] per scriverle (es. [saldo sufficiente] e [saldo insufficiente]).
 
