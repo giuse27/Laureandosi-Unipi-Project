@@ -19,5 +19,6 @@
 | 17/05/2026 | 16:46 | 19:23 | Ho terminato le ultime cose della fase di analisi. In particolare, all'interno del diagramma di classe, ho scelto di utilizzare la classe FileConfigurazione come generalizzazione di FormulaMedia, FiltroEsami e FiltroEsamiInformatici. Non so se questa scelta mi semplificherà o meno la fase di implementazione, ma al momento mi piace l'idea di raggruppare tutto ciò che può essere configurato manualmente all'interno di una sola classe, utilizzando poi le sottoclassi specializzate per i vari file. |
 | 18/05/2026 | 17:13 | 19:39 | Ho ultimato anche i diagrammi di sequenza dei casi d'uso concludendo definitivamente l'analisi. Nel diagramma di sequenza di GeneraProspettoLaurea ho inserito un blocco " opt " prima del loop principale che verifica se esiste già la cartella dove creare il prospetto e in caso affermativo la svuota. Inoltre, piccola precisazione: il nome della cartella deve essere breve e semplice per evitare errori dovuti a accenti, caratteri speciali e spazi, ad esempio nomi accettati sono Tinfo, Tbio, ecc. |
 | **18/05/2026** | **TOT. ORE:** | **48.82 h** | **CHECKPOINT ANALISI** |
+| 24/05/2026 | 17:25 | --:-- | descrizione |
 | --/--/---- | --:-- | --:-- | descrizione |
 
