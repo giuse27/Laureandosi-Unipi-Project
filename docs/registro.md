@@ -20,5 +20,6 @@
 | 18/05/2026 | 17:13 | 19:39 | Ho ultimato anche i diagrammi di sequenza dei casi d'uso concludendo definitivamente l'analisi. Nel diagramma di sequenza di GeneraProspettoLaurea ho inserito un blocco " opt " prima del loop principale che verifica se esiste già la cartella dove creare il prospetto e in caso affermativo la svuota. Inoltre, piccola precisazione: il nome della cartella deve essere breve e semplice per evitare errori dovuti a accenti, caratteri speciali e spazi, ad esempio nomi accettati sono Tinfo, Tbio, ecc. |
 | **18/05/2026** | **TOT. ORE:** | **48.82 h** | **CHECKPOINT ANALISI** |
 | 24/05/2026 | 17:25 | 21:04 | Prima attività del modulo di implementazione. Ho dedicato parte del tempo a capire come gestire tutti i file, consultandomi anche con i miei colleghi: sono giunto alla conclusione che procedere in wordpress non è una buona scelta in quanto l'esportazione del progetto sarebbe piena di file indesiderati di wordpress e non in linea con le richieste del professore; invece ho optato per un approccio personalizzato con file html e css e l'aggiunta di uno snippet php per reindirizzare a "index.php". |
+| 25/05/2026 | 13:21 | --:-- | descrizione |
 | --/--/---- | --:-- | --:-- | descrizione |
 
