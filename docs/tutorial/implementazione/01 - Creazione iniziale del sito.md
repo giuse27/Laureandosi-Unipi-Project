@@ -1,6 +1,6 @@
-# 1. Creazione iniziale del sito
+# 01 - Creazione iniziale del sito
 
-- [1. Creazione iniziale del sito](#1-creazione-iniziale-del-sito)
+- [01 - Creazione iniziale del sito](#01---creazione-iniziale-del-sito)
   - [Consigli fondamentali prima di iniziare](#consigli-fondamentali-prima-di-iniziare)
   - [Fase 1: Preparare il Server Locale](#fase-1-preparare-il-server-locale)
   - [Fase 2: Configurare PhpStorm (Regole PSR-12)](#fase-2-configurare-phpstorm-regole-psr-12)
