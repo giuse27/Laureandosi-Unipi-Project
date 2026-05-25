@@ -1,0 +1,20 @@
+{
+    "name": "giuse/laureandosi-project",
+    "type": "project",
+    "require": {
+        "php": "^8.1",
+        "phpmailer/phpmailer": "^6.8",
+        "mpdf/mpdf": "^8.1"
+    },
+    "config": {
+        "platform": {
+            "php" : "8.1.22",
+            "ext-gd": "1"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Laureandosi\\": "src/"
+        }
+    }
+}
