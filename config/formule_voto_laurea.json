@@ -1,0 +1,204 @@
+{
+  "corsi": {
+    "Tbio": {
+      "cdl": "T. Ing. Biomedica",
+      "cdlAlt": "INGEGNERIA BIOMEDICA (IBI-L)",
+      "cdlShort": "Tbio",
+      "formulaLaurea": "(110/27.17)*(M*CFU+T*3)/(CFU+3)",
+      "totCFU": 177,
+      "parT": {
+        "min": 18,
+        "max": 30,
+        "step": 1
+      },
+      "parC": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "forceThesisValue": false,
+      "notaFinale": "VOTO DI LAUREA FINALE: scegli il voto di tesi, prendi il corrispondente voto di laurea ed arrotonda"
+    },
+    "Tele": {
+      "cdl": "T. Ing. Elettronica",
+      "cdlAlt": "INGEGNERIA ELETTRONICA (IEL-L)",
+      "cdlShort": "Tele",
+      "formulaLaurea": "2+4*(M*CFU +T*3)/(CFU+3)",
+      "totCFU": 177,
+      "parT": {
+        "min": 18,
+        "max": 33,
+        "step": 1
+      },
+      "parC": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "forceThesisValue": false,
+      "notaFinale": "VOTO DI LAUREA FINALE: scegli il voto di tesi, prendi il corrispondente voto di laurea ed arrotonda"
+    },
+    "Tinf": {
+      "cdl": "T. Ing. Informatica",
+      "cdlAlt": "INGEGNERIA INFORMATICA (IFO-L)",
+      "cdlShort": "Tinf",
+      "formulaLaurea": "M*3+18+T+C",
+      "totCFU": 177,
+      "parT": {
+        "min": 1,
+        "max": 3,
+        "step": 0
+      },
+      "parC": {
+        "min": 1,
+        "max": 7,
+        "step": 1
+      },
+      "forceThesisValue": true,
+      "notaFinale": "VOTO DI LAUREA FINALE: scegli il voto commissione, prendi il corrispondente voto di laurea e somma il voto di tesi tra MIN e MAX, quindi arrotonda"
+    },
+    "Ttel": {
+      "cdl": "T. Ing. delle Telecomunicazioni",
+      "cdlAlt": "INGEGNERIA DELLE TELECOMUNICAZIONI (ITC-L)",
+      "cdlShort": "Ttel",
+      "formulaLaurea": "M*11/3+C",
+      "totCFU": 177,
+      "parT": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "parC": {
+        "min": 1,
+        "max": 11,
+        "step": 1
+      },
+      "forceThesisValue": false,
+      "notaFinale": "VOTO DI LAUREA FINALE: scegli il voto commissione, prendi il corrispondente voto di laurea ed arrotonda"
+    },
+    "Mbio": {
+      "cdl": "M. Ing. Biomedica, Bionics Engineering",
+      "cdlAlt": "INGEGNERIA BIOMEDICA (WIB-LM)",
+      "cdlShort": "Mbio",
+      "formulaLaurea": "M*3.5+11+C",
+      "totCFU": 105,
+      "parT": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "parC": {
+        "min": 0.5,
+        "max": 4.0,
+        "step": 0.5
+      },
+      "forceThesisValue": false,
+      "notaFinale": "VOTO DI LAUREA FINALE: scegli il voto commissione, prendi il corrispondente voto di laurea ed arrotonda"
+    },
+    "Mele": {
+      "cdl": "M. Ing. Elettronica",
+      "cdlAlt": "INGEGNERIA ELETTRONICA (WIE-LM)",
+      "cdlShort": "Mele",
+      "formulaLaurea": "4*(M*CFU+T*18)/(CFU+18)",
+      "totCFU": 102,
+      "parT": {
+        "min": 18,
+        "max": 30,
+        "step": 1
+      },
+      "parC": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "forceThesisValue": false,
+      "notaFinale": "VOTO DI LAUREA FINALE: scegli il voto di tesi, prendi il corrispondente voto di laurea ed arrotonda"
+    },
+    "Mcoe": {
+      "cdl": "M. Computer Engineering",
+      "cdlAlt": "COMPUTER ENGINEERING (WCN-LM)",
+      "cdlShort": "Mcoe",
+      "formulaLaurea": "M*3+22+T+C",
+      "totCFU": 96,
+      "parT": {
+        "min": 1,
+        "max": 3,
+        "step": 0
+      },
+      "parC": {
+        "min": 1,
+        "max": 3,
+        "step": 1
+      },
+      "forceThesisValue": true,
+      "notaFinale": "VOTO DI LAUREA FINALE: scegli il voto commissione, prendi il corrispondente voto di laurea e somma il voto di tesi tra MIN e MAX, quindi arrotonda"
+    },
+    "Maid": {
+      "cdl": "M. Artificial Intelligence and Data Enginering",
+      "cdlAlt": "ARTIFICIAL INTELLIGENCE AND DATA ENGINEERING (WAI-LM)",
+      "cdlShort": "Maid",
+      "formulaLaurea": "M*3+22+T+C",
+      "totCFU": 96,
+      "parT": {
+        "min": 1,
+        "max": 3,
+        "step": 0
+      },
+      "parC": {
+        "min": 1,
+        "max": 3,
+        "step": 1
+      },
+      "forceThesisValue": true,
+      "notaFinale": "VOTO DI LAUREA FINALE: scegli il voto commissione, prendi il corrispondente voto di laurea e somma il voto di tesi tra MIN e MAX, quindi arrotonda"
+    },
+    "Mrob": {
+      "cdl": "M. Ing. Robotica e della Automazione",
+      "cdlAlt": "INGEGNERIA ROBOTICA E DELLA AUTOMAZIONE (WIM-LM)",
+      "cdlShort": "Mrob",
+      "formulaLaurea": "M*3+18.5+T",
+      "totCFU": 102,
+      "parT": {
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "parC": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "forceThesisValue": false,
+      "notaFinale": "VOTO DI LAUREA FINALE: scegli il voto di tesi, prendi il corrispondente voto di laurea ed arrotonda"
+    },
+    "Mtel": {
+      "cdl": "M. Ing. delle Telecomunicazioni",
+      "cdlAlt": "INGEGNERIA DELLE TELECOMUNICAZIONI (WIT-LM)",
+      "cdlShort": "Mtel",
+      "formulaLaurea": "M*11/3+C",
+      "totCFU": 96,
+      "parT": {
+        "min": 0,
+        "max": 0,
+        "step": 0
+      },
+      "parC": {
+        "min": 1,
+        "max": 11,
+        "step": 1
+      },
+      "forceThesisValue": false,
+      "notaFinale": "VOTO DI LAUREA FINALE: scegli il voto commissione, prendi il corrispondente voto di laurea ed arrotonda"
+    }
+  },
+  "lode": 33,
+  "infoTitle": "LAUREANDOSI 2 - Progettazione: mario.cimino@unipi.it, Amministrazione: rose.rossiello@unipi.it",
+  "docTitle": "CARRIERA E SIMULAZIONE DEL VOTO DI LAUREA",
+  "email" : {
+    "host": "mixer.unipi.it",
+    "fromName": "Laureandosi 2.0",
+    "fromMail": "noreply-laureandosi@dii.unipi.it",
+    "subject": "Appello di laurea in INSERISCI_CDL - indicatori per voto di laurea",
+    "body": "Gentile laureando/laureanda,\nAllego un prospetto contenente: la sua carriera, gli indicatori e la formula che la commissione adopererà per determinare il voto di laurea.\nLa prego di prendere visione dei dati relativi agli esami.\nIn caso di dubbi scrivere a: vittoria.dattilo@unipi.it\n\nAlcune spiegazioni:\n- gli esami che non hanno un voto in trentesimi, hanno voto nominale zero al posto di giudizio o idoneita', inquanto non contribuiscono al calcolo della media ma solo al numero di crediti curriculari;\n- gli esami che non fanno media (pur contribuendo ai crediti curriculari) non hanno la spunta nella colonna MED;\n- il voto di tesi (T) appare nominalmente a zero in quanto verra' determinato in sede di laurea, e va da 18 a 30. \n\nCordiali saluti \nUnità Didattica DII"
+  }
+}
