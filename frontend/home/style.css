@@ -1,0 +1,285 @@
+/* ==========================================================================
+   Laureandosi — style.css
+   Stile globale dell'interfaccia "Gestione Prospetti di Laurea"
+   ========================================================================== */
+
+/* ---------- Variabili ---------- */
+:root {
+    /* colori di riferimento */
+    --color-brand:              #4f772d;
+    --color-brand-hover:        #386641;
+    --color-bg-page:            #f2e8cf;
+    --color-text-primary:       #1a1c23;
+    --color-text-secondary:     #5a5f72;
+
+    /* impostazioni della card */
+    --color-bg-card:            #ffffff;
+    --color-border: rgba(6, 56, 24, 0.6);
+    --shadow-card:              0 2px 12px rgba(20, 30, 60, 0.08);
+    --radius-card:              16px;
+
+    /* intestazioni */
+    --color-bar-card:           var(--color-brand);
+    --height-bar-card:          5px;
+    --color-bg-logo:            var(--color-brand);
+    --radius-logo:              10px;
+
+    /* form */
+    --radius-form:              10px;
+    --transition:               0.18s ease;
+
+    /* field */
+    --color-border-focus:       #386641;
+    --color-bg-field-focus:     rgba(192, 248, 180, 0.2);
+    --color-text-defval:        #9096ab;
+    --color-border-hover:       #000000;
+
+    /* status bar */
+    --color-bg-status-bar:      #e0e1dd80;
+    --color-status-dot:         #6c757d;
+    --radius-status-bar:        var(--radius-card);
+    --color-status-border:      #000000;
+
+    /* pulsanti: crea, apri, invia */
+    --radius-btn:               var(--radius-form);
+    --color-create:             #a7c957;
+    --color-open:               #778da9;
+    --color-send:               #f19c79;
+}
+
+/* ---------- Reset minimo ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    background-color: var(--color-bg-page);
+    color: var(--color-text-primary);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+/* ---------- Layout ---------- */
+.page-wrapper {
+    width: 100%;
+    max-width: 900px;
+}
+
+/* ---------- Card principale ---------- */
+.card {
+    background: var(--color-bg-card);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--color-border);
+    padding: 2rem 2.5rem 2.25rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Barra top-bottom della card */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: var(--height-bar-card);
+    background: var(--color-bar-card);
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: var(--height-bar-card);
+    background: var(--color-bar-card);
+}
+
+/* ---------- Header della card ---------- */
+.card_header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.card_logo {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-logo);
+    background: var(--color-bg-logo);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+}
+
+.card_title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    line-height: 1.3;
+}
+
+.card_subtitle {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    margin-top: 2px;
+}
+
+/* ---------- Griglia campi ---------- */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.1rem 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.form-field--full {
+    grid-column: 1 / -1;
+}
+
+/* ---------- Singolo campo ---------- */
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.form-field select,
+.form-field input[type="date"],
+.form-field textarea {
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: var(--color-text-primary);
+    background: var(--color-bg-field);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-form);
+    padding: 10px 13px;
+    width: 100%;
+    outline: none;
+    transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
+    appearance: auto;
+}
+
+.form-field select:hover,
+.form-field input[type="date"]:hover,
+.form-field textarea:hover {
+    border-color: var(--color-border-hover);
+}
+
+.form-field select:focus,
+.form-field input[type="date"]:focus,
+.form-field textarea:focus {
+    border-color: var(--color-border-focus);
+    background: var(--color-bg-field-focus);
+    box-shadow: 0 0 0 3px var(--shadow-card);
+}
+
+.form-field textarea {
+    resize: vertical;
+    min-height: 130px;
+    line-height: 1.65;
+}
+
+.form-field textarea::placeholder {
+    color: var(--color-text-defval);
+    font-style: italic;
+}
+
+/* ---------- Barra di stato ---------- */
+.status-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--color-bg-status-bar);
+    border: 1px solid var(--color-status-border);
+    border-radius: var(--radius-status-bar);
+    padding: 10px 14px;
+    min-height: 44px;
+    margin-top: 1.5rem;
+    transition: border-color var(--transition);
+    font-style: oblique;
+}
+
+.status-bar__dot {
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-status-dot);
+    transition: background var(--transition);
+}
+
+.status-bar__dot--active  { background: var(--color-text-secondary); }
+.status-bar__dot--warning { background: #c97a16; }
+.status-bar__dot--error   { background: #c03232; }
+
+.status-bar__text {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+}
+
+.status-bar--success { border-color: rgba(29, 127, 88, 0.35); }
+.status-bar--warning { border-color: rgba(201, 122, 22, 0.35); }
+.status-bar--error   { border-color: rgba(192, 50, 50, 0.35);  }
+
+/* ---------- Azioni ---------- */
+.actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+}
+
+/* ---------- Pulsanti ---------- */
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    padding: 22px 10px;
+    border-radius: var(--radius-btn);
+    font-family: inherit;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid;
+    transition: opacity var(--transition), transform 0.1s ease, background var(--transition);
+    line-height: 1;
+    color: #000000;
+    border-color: #ffffff;
+}
+
+.btn:hover { transform: scale(1.05); color: #000000; border: 1px solid;}
+.btn:active { transform: scale(0.9); font-weight: 650; box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2); filter: brightness(0.7);}
+.btn:focus-visible { outline: 2px solid var(--color-brand); outline-offset: 3px; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn--create {
+    background: var(--color-create);
+}
+
+.btn--open {
+    background: var(--color-open);
+}
+
+.btn--send {
+    background: var(--color-send);
+}
