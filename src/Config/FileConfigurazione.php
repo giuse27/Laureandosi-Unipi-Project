@@ -29,13 +29,13 @@ class FileConfigurazione
         }
 
         $json = file_get_contents($path);
-        $data = json_decode($json, true);
+        $corsi_di_laurea = json_decode($json, true);
 
         if (json_last_error() !== JSON_ERROR_NONE) {
             throw new \RuntimeException("JSON non valido: " . json_last_error_msg());
         }
 
-        return $data;
+        return $corsi_di_laurea;
     }
 
     public function getFiltroEsami(): FiltroEsami { /* ... */ }

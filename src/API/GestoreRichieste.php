@@ -3,15 +3,17 @@
 declare(strict_types = 1);
 
 /**
- * src/API/RequestHandler.php
+ * src/API/GestoreRichieste.php
  *
  * Single entry point per tutte le richieste AJAX del frontend.
- * Tutte le chiamate passano di qui; RequestHandler smista per 'action'.
+ * Tutte le chiamate passano di qui; smista per 'action'.
  */
 
-require_once  dirname(__DIR__, 2) . '/vendor/autoload.php';
+// Carico l'autoloader di Composer per far funzionare i namespace
+require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
 
-// specifico a chi legge i dati che glieli sto mandando in formato json codificati in utf-8
+use Laureandosi\Config\FileConfigurazione;
+
 header('Content-Type: application/json; charset=utf-8');
 
 /*
@@ -32,27 +34,88 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-// cerco un parametro di tipo action all'interno della richiesta
-$action = $_REQUEST['action'] ?? '';
+// HELPER PER GLI ERRORI (Ferma l'esecuzione e invia un JSON pulito)
+function inviaErrore(int $codiceHttp, string $messaggio): never {
+    http_response_code($codiceHttp);
+    inviaRisposta(false, 'error', $messaggio);
+    exit();
+}
 
-// qui avviene il reindirizzamento sulla base del valore di action
+function inviaRisposta(bool $success = true, string $type = '', string $message = '', array $data = []): void {
+    echo json_encode(['success' => $success, 'type' => $type, 'message' => $message, 'data' => $data]);
+}
+
+// 1. ESTRAZIONE AZIONE
+$action = $_GET['action'] ?? $_POST['action'] ?? '';
+
+if (empty($action)) {
+    inviaErrore(400, "Azione non specificata");
+}
+
+// 2. ESTRAZIONE DATI POST
+$cdl = trim($_POST['cdl'] ?? '');
+$data_laurea = trim($_POST['data_laurea'] ?? '');
+
+// Decodifico il JSON inviato dallo script.js
+$matricole = isset($_POST['matricole']) ? json_decode($_POST['matricole'], true) : [];
+if (!is_array($matricole)) {
+    $matricole = []; // In caso di JSON malformato, default a array vuoto
+}
+
+// 3. ROUTING DELLA RICHIESTA
 try {
     switch ($action) {
+        
+        // --- LETTURA (GET) ---
         case 'get_elenco_cdl':
-            $cdl = FileConfigurazione::getCorsiDiLaurea();
-            echo json_encode(['success' => true, 'data' => $cdl]);
+            if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+                inviaErrore(405, "Metodo non consentito. Usa GET.");
+            }
+            
+            $corsi = FileConfigurazione::getCorsiDiLaurea();
+            inviaRisposta(true, '', '', $corsi);
             break;
 
-        case 'genera_prospetti':
-            // TODO: istanziare InterfacciaGrafica e chiamare GeneraProspetti()
-            echo json_encode(['success' => true, 'message' => 'In sviluppo']);
+        // --- SCRITTURA / AZIONI (POST) ---
+        case 'btn-crea':
+            if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+                inviaErrore(405, "Metodo non consentito. Usa POST.");
+            }
+            
+            // TODO: Inserire qui la logica di creazione
+            // Es: $esito = GeneratoreProspettiLaurea::Genera($cdl, $data_laurea, $matricole);
+            
+            inviaRisposta(true, '', 'Prospetti creati con successo (TODO)');
+            break;
+
+        case 'btn-apri':
+            if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+                inviaErrore(405, "Metodo non consentito. Usa POST.");
+            }
+            
+            // TODO: Inserire qui la logica di apertura
+
+            inviaRisposta(true, '', 'Apertura prospetti in corso (TODO)');
+            break;
+
+        case 'btn-invia':
+            if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+                inviaErrore(405, "Metodo non consentito. Usa POST.");
+            }
+            
+            // TODO: Inserire qui la logica di invio email
+            
+            inviaRisposta(true, '', 'Prospetti inviati con successo (TODO)');
             break;
 
         default:
-            http_response_code(400);
-            echo json_encode(['success' => false, 'error' => "Azione '$action' non riconosciuta"]);
+            inviaErrore(400, "Azione '$action' non riconosciuta");
     }
+
 } catch (\Exception $e) {
-    http_response_code(500);
-    echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+    // GESTIONE ECCEZIONI GLOBALI
+    inviaErrore(500, "Errore interno del server: " . $e->getMessage());
 }
+
+// Chiusura sicura
+exit();

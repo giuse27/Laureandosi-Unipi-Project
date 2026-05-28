@@ -1,5 +1,42 @@
 [
-  { "codice": "L-31",  "nome": "Informatica (Triennale)" },
-  { "codice": "LM-18", "nome": "Informatica (Magistrale)" },
-  { "codice": "L-8",   "nome": "Ingegneria Informatica (Triennale)" }
+  {
+    "cdlAlt": "INGEGNERIA BIOMEDICA (IBI-L)",
+    "cdlShort": "Tbio"
+  },
+  {
+    "cdlAlt": "INGEGNERIA ELETTRONICA (IEL-L)",
+    "cdlShort": "Tele"
+  },
+  {
+    "cdlAlt": "INGEGNERIA INFORMATICA (IFO-L)",
+    "cdlShort": "Tinf"
+  },
+  {
+    "cdlAlt": "INGEGNERIA DELLE TELECOMUNICAZIONI (ITC-L)",
+    "cdlShort": "Ttel"
+  },
+  {
+    "cdlAlt": "INGEGNERIA BIOMEDICA (WIB-LM)",
+    "cdlShort": "Mbio"
+  },
+  {
+    "cdlAlt": "INGEGNERIA ELETTRONICA (WIE-LM)",
+    "cdlShort": "Mele"
+  },
+  {
+    "cdlAlt": "COMPUTER ENGINEERING (WCN-LM)",
+    "cdlShort": "Mcoe"
+  },
+  {
+    "cdlAlt": "ARTIFICIAL INTELLIGENCE AND DATA ENGINEERING (WAI-LM)",
+    "cdlShort": "Maid"
+  },
+  {
+    "cdlAlt": "INGEGNERIA ROBOTICA E DELLA AUTOMAZIONE (WIM-LM)",
+    "cdlShort": "Mrob"
+  },
+  {
+    "cdlAlt": "INGEGNERIA DELLE TELECOMUNICAZIONI (WIT-LM)",
+    "cdlShort": "Mtel"
+  }
 ]

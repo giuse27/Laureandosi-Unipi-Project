@@ -1,30 +1,24 @@
 /**
+ * frontend/home/script.js
  * Logica di front-end in javascript.
- *
- * punti salienti:
- * 1. lettura dello stato dei pulsanti e esecuzione delle rispettive azioni
- * 2. caricamento dell'elenco dei CdL
- * 3. aggiornamento della barra di stato
  */
 
-// Aggiungo un EventListener per ricevere le richieste mandate dai pulsanti
 document.addEventListener('DOMContentLoaded', async () => {
     await caricaCdl();
 
-    document.getElementById('btn-crea').addEventListener('click', () => eseguiAzione('genera_prospetti'));
-    document.getElementById('btn-apri').addEventListener('click', () => eseguiAzione('apri_prospetti'));
-    document.getElementById('btn-invia').addEventListener('click', () => eseguiAzione('invia_prospetti'));
+    document.getElementById('btn-crea').addEventListener('click', () => eseguiAzione('btn-crea'));
+    document.getElementById('btn-apri').addEventListener('click', () => eseguiAzione('btn-apri'));
+    document.getElementById('btn-invia').addEventListener('click', () => eseguiAzione('btn-invia'));
 });
 
-// La funzione caricaCdl restituisce l'elenco dei corsi di laurea, printi per essere mostrati nel menù a tendina
+// La funzione caricaCdl restituisce l'elenco dei corsi di laurea per il menù a tendina
 async function caricaCdl() {
-
     try {
-
-        const richiesta = await fetch('/src/API/GestoreRichieste.php?action=get_elenco_cdl');
+        const richiesta = await fetch('src/API/GestoreRichieste.php?action=get_elenco_cdl');
         const cdl_json = await richiesta.json();
 
-        if (!cdl_json.success) throw new Error(cdl_json.error);
+        // MODIFICA: Uso .message invece di .error per stampare il testo corretto
+        if (!cdl_json.success) throw new Error(cdl_json.message);
 
         const select = document.getElementById('cdl');
         cdl_json.data.forEach(corso => {
@@ -35,45 +29,71 @@ async function caricaCdl() {
         });
 
     } catch (err) {
-
         setStatus('error', `Impossibile caricare i CdL: ${err.message}`);
-
     }
-
 }
 
-// esegue le azioni dei pulsanti
+// Esegue le azioni dei pulsanti
 async function eseguiAzione(action) {
-    const cdl        = document.getElementById('cdl').value;
-    const dataLaurea = document.getElementById('data-laurea').value;
-    const matricole  = document.getElementById('matricole').value;
+    const cdl = document.getElementById('cdl').value;
+    const data_laurea = document.getElementById('data-laurea').value;
+    const matricoleText = document.getElementById('matricole').value;
 
-    if (!cdl || !dataLaurea) {
-        setStatus('warning', 'Seleziona CdL e data laurea prima di procedere.');
-        return;
+    // MODIFICA: Logica di estrazione e pulizia matricole
+    const matricoleArray = matricoleText
+        .split(/[\n, ]+/)
+        .map(m => m.trim())
+        .filter(m => m !== "")
+        .map(m => Number(m))
+        .filter(m => !isNaN(m));
+
+    
+    // --- 1. VALIDAZIONE BASE ---
+    if (action === 'btn-crea' && (!cdl || !data_laurea || matricoleArray.length === 0)) {
+        setStatus('warning', "Dati mancanti per la generazione dei prospetti.");
+        return; // Ferma tutto
+    }
+    
+    if (action === 'btn-apri' && !cdl) {
+        setStatus('warning', "Seleziona un Corso di Laurea per aprire i prospetti.");
+        return; // Ferma tutto
+    }
+    
+    if (action === 'btn-invia' && !cdl) {
+        setStatus('warning', "Seleziona un Corso di Laurea per inviare i prospetti.");
+        return; // Ferma tutto
     }
 
+    // --- 2. OPERAZIONE IN CORSO ---
     setStatus('loading', 'Operazione in corso…');
 
     const body = new FormData();
-    body.append('action',      action);
-    body.append('cdl',         cdl);
-    body.append('data_laurea', dataLaurea);
-    body.append('matricole',   matricole);
+    body.append('action', action);
+    body.append('cdl', cdl);
+    body.append('data_laurea', data_laurea);
+    // MODIFICA: Trasformo l'array pulito in stringa JSON prima di inviarlo
+    body.append('matricole', JSON.stringify(matricoleArray));
 
     try {
-        const res  = await fetch('src/API/GestoreRichieste.php', { method: 'POST', body });
+        const res = await fetch('src/API/GestoreRichieste.php', { method: 'POST', body });
         const json = await res.json();
 
-        if (!json.success) throw new Error(json.error);
-        setStatus('success', json.message ?? 'Operazione completata.');
+        // Se PHP manda un tipo, usiamo quello. Se per qualche motivo è vuoto, usiamo una logica di riserva.
+        const tipoStatus = json.type || (json.success ? 'success' : 'error');
+        
+        // 2. Aggiorniamo la barra di stato
+        setStatus(tipoStatus, json.message ?? 'Operazione completata con successo.');
 
     } catch (err) {
-        setStatus('error', err.message);
+        // 3. Il catch scatta SOLO per errori catastrofici veri, ad esempio:
+        // - (nessuna connessione)
+        // - PHP è andato in "Fatal Error" o ha restituito HTML invece di JSON
+        setStatus('error', 'Errore critico di comunicazione: ' + err.message);
+        console.error(err);
     }
 }
 
-// aggiornamento della barra di stato
+// Aggiornamento della barra di stato
 function setStatus(type, msg) {
     const dot = document.getElementById('status-dot');
     const txt = document.getElementById('status-text');
