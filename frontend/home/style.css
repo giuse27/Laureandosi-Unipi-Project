@@ -165,7 +165,7 @@ body {
     font-family: inherit;
     font-size: 0.9rem;
     color: var(--color-text-primary);
-    background: var(--color-bg-field);
+    background: #ffffff;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-form);
     padding: 10px 13px;
@@ -224,7 +224,7 @@ body {
     transition: background var(--transition);
 }
 
-.status-bar__dot--active  { background: var(--color-text-secondary); }
+.status-bar__dot--success  { background: var(--color-brand); }
 .status-bar__dot--warning { background: #c97a16; }
 .status-bar__dot--error   { background: #c03232; }
 
@@ -233,9 +233,9 @@ body {
     color: var(--color-text-secondary);
 }
 
-.status-bar--success { border-color: rgba(29, 127, 88, 0.35); }
-.status-bar--warning { border-color: rgba(201, 122, 22, 0.35); }
-.status-bar--error   { border-color: rgba(192, 50, 50, 0.35);  }
+.status-bar--success { border-color: rgba(29, 127, 88, 1); }
+.status-bar--warning { border-color: rgba(201, 122, 22, 1); }
+.status-bar--error   { border-color: rgba(192, 50, 50, 1);  }
 
 /* ---------- Azioni ---------- */
 .actions {
@@ -260,11 +260,10 @@ body {
     font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
-    border: 1px solid;
     transition: opacity var(--transition), transform 0.1s ease, background var(--transition);
     line-height: 1;
     color: #000000;
-    border-color: #ffffff;
+    border: 1px solid #ffffff;
 }
 
 .btn:hover { transform: scale(1.05); color: #000000; border: 1px solid;}
