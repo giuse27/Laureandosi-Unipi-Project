@@ -36,6 +36,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 $action = $_REQUEST['action'] ?? '';
 
 // qui avviene il reindirizzamento sulla base del valore di action
-switch ($action) {
+try {
+    switch ($action) {
+        case 'get_elenco_cdl':
+            $cdl = FileConfigurazione::getCorsiDiLaurea();
+            echo json_encode(['success' => true, 'data' => $cdl]);
+            break;
 
+        case 'genera_prospetti':
+            // TODO: istanziare InterfacciaGrafica e chiamare GeneraProspetti()
+            echo json_encode(['success' => true, 'message' => 'In sviluppo']);
+            break;
+
+        default:
+            http_response_code(400);
+            echo json_encode(['success' => false, 'error' => "Azione '$action' non riconosciuta"]);
+    }
+} catch (\Exception $e) {
+    http_response_code(500);
+    echo json_encode(['success' => false, 'error' => $e->getMessage()]);
 }

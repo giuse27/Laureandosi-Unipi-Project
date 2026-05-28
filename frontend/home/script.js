@@ -21,7 +21,7 @@ async function caricaCdl() {
 
     try {
 
-        const richiesta = await fetch('src/API/GestoreRichieste.php?action=get_elenco_cdl');
+        const richiesta = await fetch('/src/API/GestoreRichieste.php?action=get_elenco_cdl');
         const cdl_json = await richiesta.json();
 
         if (!cdl_json.success) throw new Error(cdl_json.error);
