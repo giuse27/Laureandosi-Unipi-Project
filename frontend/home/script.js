@@ -50,7 +50,16 @@ async function eseguiAzione(action) {
     
     // --- 1. VALIDAZIONE BASE ---
     if (action === 'btn-crea' && (!cdl || !data_laurea || matricoleArray.length === 0)) {
-        setStatus('warning', "Dati mancanti per la generazione dei prospetti.");
+        msg = '';
+        if (!cdl && data_laurea && matricoleArray.length !== 0)     msg = 'inserisci il CdL.';
+        if (cdl && !data_laurea && matricoleArray.length !== 0)     msg = 'inserisci la data di laurea.';
+        if (cdl && data_laurea && matricoleArray.length === 0 && !matricoleText)    msg = 'inserisci le matricole';
+        if (cdl && data_laurea && matricoleArray.length === 0 && matricoleText)     msg = 'i numeri delle matricole non sono validi.'
+        if (!cdl && !data_laurea && matricoleArray.length !== 0)    msg = 'inserisci il CdL e la data di laurea.';
+        if (!cdl && data_laurea && matricoleArray.length === 0)     msg = 'inserisci il CdL e le matricole.';
+        if (cdl && !data_laurea && matricoleArray.length === 0)     msg = 'inserisci la data di laurea e le matricole.';
+        if (!cdl && !data_laurea && matricoleArray.length === 0)    msg = 'inserisci CdL, la data di laurea e le matricole.';
+        setStatus('warning', `Dati mancanti per la generazione dei prospetti: ${msg}`);
         return; // Ferma tutto
     }
     
@@ -103,7 +112,9 @@ async function eseguiAzione(action) {
 // Aggiornamento della barra di stato
 function setStatus(type, msg) {
     const dot = document.getElementById('status-dot');
+    const bar = document.getElementById('status-bar');
     const txt = document.getElementById('status-text');
     dot.className = `status-bar__dot status-bar__dot--${type}`;
+    bar.className = `status-bar status-bar--${type}`;
     txt.textContent = msg;
 }
