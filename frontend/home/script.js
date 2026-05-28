@@ -84,6 +84,13 @@ async function eseguiAzione(action) {
         // 2. Aggiorniamo la barra di stato
         setStatus(tipoStatus, json.message ?? 'Operazione completata con successo.');
 
+        // 3. Se tutto è andato bene, svuotiamo i campi per la prossima operazione
+        if (tipoStatus === 'success') {
+            document.getElementById('cdl').value = '';
+            document.getElementById('data-laurea').value = '';
+            document.getElementById('matricole').value = '';
+        }
+
     } catch (err) {
         // 3. Il catch scatta SOLO per errori catastrofici veri, ad esempio:
         // - (nessuna connessione)
