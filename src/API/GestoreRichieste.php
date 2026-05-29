@@ -85,7 +85,10 @@ try {
                 inviaErrore(405, "Metodo non consentito. Usa POST.");
             }
 
-            // validazione dei dati già effettuata in script.js
+            // validazione dei dati già effettuata in script.js, ma rifaccio un controllo rapido per sicurezza
+            if (empty($cdl) || empty($data_laurea) || empty($matricole)) {
+                inviaErrore(400, "Dati mancanti o non validi in 'btn-crea'.");
+            }
 
             $risultati = $interfaccia->GeneraProspetti($matricole, $cdl, $data_laurea);
 
@@ -98,6 +101,9 @@ try {
             }
 
             // validazione dei dati già effettuata in script.js
+            if (empty($cdl)) {
+                inviaErrore(400, "Dati mancanti o non validi in 'btn-apri'.");
+            }
 
             $risultati = $interfaccia->ApriProspetti($cdl);
 
@@ -110,6 +116,9 @@ try {
             }
             
             // validazione dei dati già effettuata in script.js
+            if (empty($cdl)) {
+                inviaErrore(400, "Dati mancanti o non validi in 'btn-invia'.");
+            }
 
             $risultati = $interfaccia->InviaProspetti($cdl);
 
