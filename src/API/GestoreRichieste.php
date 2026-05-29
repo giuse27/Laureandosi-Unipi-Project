@@ -13,6 +13,7 @@ declare(strict_types = 1);
 require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
 
 use Laureandosi\Config\FileConfigurazione;
+use Laureandosi\Core\InterfacciaGrafica;
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -62,6 +63,8 @@ if (!is_array($matricole)) {
     $matricole = []; // In caso di JSON malformato, default a array vuoto
 }
 
+$interfaccia = new InterfacciaGrafica();
+
 // 3. ROUTING DELLA RICHIESTA
 try {
     switch ($action) {
@@ -81,10 +84,11 @@ try {
             if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
                 inviaErrore(405, "Metodo non consentito. Usa POST.");
             }
-            
-            // TODO: Inserire qui la logica di creazione
-            // Es: $esito = GeneratoreProspettiLaurea::Genera($cdl, $data_laurea, $matricole);
-            
+
+            // validazione dei dati già effettuata in script.js
+
+            $risultati = $interfaccia->GeneraProspetti($matricole, $cdl, $data_laurea);
+
             inviaRisposta(true, '', 'Prospetti creati con successo (TODO)');
             break;
 
@@ -92,8 +96,10 @@ try {
             if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
                 inviaErrore(405, "Metodo non consentito. Usa POST.");
             }
-            
-            // TODO: Inserire qui la logica di apertura
+
+            // validazione dei dati già effettuata in script.js
+
+            $risultati = $interfaccia->ApriProspetti($cdl);
 
             inviaRisposta(true, '', 'Apertura prospetti in corso (TODO)');
             break;
@@ -103,8 +109,10 @@ try {
                 inviaErrore(405, "Metodo non consentito. Usa POST.");
             }
             
-            // TODO: Inserire qui la logica di invio email
-            
+            // validazione dei dati già effettuata in script.js
+
+            $risultati = $interfaccia->InviaProspetti($cdl);
+
             inviaRisposta(true, '', 'Prospetti inviati con successo (TODO)');
             break;
 
