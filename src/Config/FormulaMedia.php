@@ -104,4 +104,44 @@ class FormulaMedia {
     public function getParCMax(): float  { return $this->parCMax; }
     public function getParCStep(): float { return $this->parCStep; }
 
+    // =========================================================================
+    // Calcolo voto di laurea
+    // =========================================================================
+
+    /**
+     * Valuta la formula sostituendo le variabili M, CFU, T, C.
+     *
+     * Usa eval() in modo controllato: la stringa formula proviene solo
+     * da un file JSON di configurazione interno, mai da input utente.
+     *
+     * float $M   Media ponderata (es. 27.45)
+     * float $CFU CFU usati per la media
+     * float $T   Bonus tesi (deve essere nel range parT)
+     * float $C   Bonus commissione (deve essere nel range parC)
+     *
+     * float Voto calcolato (non clampato a 110; il chiamante decide)
+     * InvalidArgumentException se T o C sono fuori range
+     * RuntimeException se la formula contiene errori
+     */
+
+    public function calcolaVotoLaurea(float $M, int $CFU, float $T, float $C) : float
+    {
+        // non ho validato i parametri perché ho assunto che i dati arrivino già buoni perché non inseriti dall'utente
+        // Costruisce un'espressione PHP valutabile sostituendo le variabili
+        $expr = $this->formulaLaurea;
+        $expr = str_replace(
+            ['M',   'CFU',  'T',   'C'],
+            [$M,    $CFU,   $T,    $C],
+            $expr
+        );
+
+        try{
+            $result = eval("return $expr;");
+            return round($result, 3);
+        }
+        catch(Throwable $e){
+            throw new Exception("Errore nel calcolo della formula: ". $e->getMessage());
+        }
+    }
+
 }

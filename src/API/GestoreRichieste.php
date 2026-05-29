@@ -92,7 +92,8 @@ try {
 
             $risultati = $interfaccia->GeneraProspetti($matricole, $cdl, $data_laurea);
 
-            inviaRisposta(true, '', 'Prospetti creati con successo (TODO)');
+            // prova di funzionamento (DA RIMUOVERE IN FASE FINALE)
+            inviaRisposta(true, 'success', 'Voto calcolato con successo: ' . ($risultati['voto_calcolato'] ?? 'N/A'));
             break;
 
         case 'btn-apri':
