@@ -1,0 +1,58 @@
+{
+  "global": {
+    "NoAvg": [],
+    "NoCdl": [
+		"PROVA FINALE",
+		"TEST DI VALUTAZIONE INGEGNERIA"
+	]
+  },
+  "specific": {
+  },
+  "TBio": {
+    "NoAvg": [],
+    "NoCdl": []
+  },
+  "TEle": {
+    "NoAvg": [],
+    "NoCdl": []
+  },
+  "TInf": {
+    "NoAvg": [
+      "PROVA DI LINGUA INGLESE (B1)",
+      "PROVA DI LINGUA INGLESE",
+      "PROVA DI LINGUA INGLESE B2",
+      "TIROCINIO"
+    ],
+    "NoCdl": [
+		"LIBERA SCELTA PER RICONOSCIMENTI"
+	]
+  },
+  "TTel": {
+    "NoAvg": [],
+    "NoCdl": []
+  },
+  "MBio": {
+    "NoAvg": [],
+    "NoCdl": []
+  },
+  "MEle": {
+    "NoAvg": [],
+    "NoCdl": []
+  },
+  "MCoe": {
+    "NoAvg": [],
+    "NoCdl": []
+  },
+  "MAid": {
+    "NoAvg": [],
+    "NoCdl": []
+  },
+  "MRob": {
+    "NoAvg": [],
+    "NoCdl": []
+  },
+  "MTel": {
+    "NoAvg": [],
+    "NoCdl": []
+  }
+}
