@@ -2,6 +2,8 @@
 
 declare(strict_types = 1);
 
+namespace Laureandosi\API;
+
 /**
  * src/API/GestoreRichieste.php
  *
@@ -90,7 +92,7 @@ try {
                 inviaErrore(400, "Dati mancanti o non validi in 'btn-crea'.");
             }
 
-            $risultati = $interfaccia->GeneraProspetti($matricole, $cdl, $data_laurea);
+            $interfaccia->GeneraProspetti($matricole, $cdl, $data_laurea);
 
             inviaRisposta(true, '', 'Prospetti generati con successo (TODO)');
             break;
