@@ -2,13 +2,22 @@
 
 namespace Laureandosi\Config;
 
+require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
+
+use Laureandosi\Core\Esame;
+use Mpdf\Form;
+use Laureandosi\Config\FormulaMedia;
+use Laureandosi\Config\FiltroEsami;
+use Laureandosi\Config\FiltroEsamiInformatici;
+
 class FileConfigurazione
 {
     private string $configDir;
     private string $path_elenco_cdl;
-    private string $path_formule_e_mail;
-    private string $path_filtro_esami;
-    private string $path_esami_informatici;
+
+    private FormulaMedia $fileMediaEEmail;
+    private FiltroEsami $fileFiltroEsami;
+    private FiltroEsamiInformatici $fileFiltroEsamiInformatici;
 
 
     /**
@@ -22,41 +31,20 @@ class FileConfigurazione
         // Se non viene specificata una directory di configurazione, usa quella di default
         $this->configDir = $configDir ?: dirname(__DIR__, 2) . '/config';
         $this->path_elenco_cdl = $this->configDir . '/corsi_di_laurea.json';
-        $this->path_formule_e_mail = $this->configDir . '/formule_voto_laurea.json';
-        $this->path_filtro_esami = $this->configDir . '/filtro_esami.json';
-        $this->path_esami_informatici = $this->configDir . '/esami_informatici.json';
+
+        $path_formule_e_mail = $this->configDir . '/formule_voto_laurea.json';
+        $path_filtro_esami = $this->configDir . '/filtro_esami.json';
+        $path_esami_informatici = $this->configDir . '/esami_informatici.json';
+
+        $this->fileMediaEEmail = new FormulaMedia($path_formule_e_mail);
+        $this->fileFiltroEsami = new FiltroEsami($path_filtro_esami);
+        $this->fileFiltroEsamiInformatici = new FiltroEsamiInformatici($path_esami_informatici);
     }
 
-    /**
-     * Restituisce l'elenco dei Corsi di Laurea dal JSON centrale.
-     */
-    public function getCorsiDiLaurea(): array
+    private function loadJsonConfig(string $path): array
     {
-        $path = $this->path_elenco_cdl;
-
         if (!file_exists($path)) {
-            throw new \RuntimeException("File corsi_di_laurea.json non trovato in: $path");
-        }
-
-        $json = file_get_contents($path);
-        $corsi_di_laurea = json_decode($json, true);
-
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new \RuntimeException("JSON non valido: " . json_last_error_msg());
-        }
-
-        return $corsi_di_laurea;
-    }
-
-    /**
-     * Restituisce le informazioni di configurazione per le email
-     */
-    public function getEmailConfig(): array 
-    { 
-        $path = $this->path_formule_e_mail;
-
-        if (!file_exists($path)) {
-            throw new \RuntimeException("File formule_voto_laurea.json non trovato in: $path");
+            throw new \RuntimeException("File di configurazione non trovato in: $path");
         }
 
         $json = file_get_contents($path);
@@ -67,6 +55,38 @@ class FileConfigurazione
         }
 
         return $config;
-     }
+    }
+
+    /**
+     * Restituisce l'elenco dei Corsi di Laurea dal JSON centrale.
+     */
+    public function getCorsiDiLaurea(): array
+    {
+        return $this->loadJsonConfig($this->path_elenco_cdl);
+    }
+
+    /**
+     * Restituisce le informazioni di configurazione per le email
+     */
+    public function getEmailConfig(): array
+    {
+        return $this->loadJsonConfig($this->path_formule_e_mail);
+    }
+
+    /**
+     * Restituisce il valore della lode
+     */
+    public function getLodeVal(): int
+    {
+        return $this->fileMediaEEmail->getLodeValue();
+    }
+
+    /**
+     * Verifica se un esame fa media oppure no
+     */
+    public function isValid(Esame $esame, string $cdl, string $mat) : bool
+    {
+
+    }
 
 }
