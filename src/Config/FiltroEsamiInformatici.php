@@ -5,6 +5,7 @@ namespace Laureandosi\Config;
 require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
 
 use Laureandosi\Config\FiltroEsami;
+use Laureandosi\Core\Esame;
 
 class FiltroEsamiInformatici
 {
@@ -25,4 +26,10 @@ class FiltroEsamiInformatici
 
         $this->datiJSON = $dati;
     }
+
+    public function isValid(Esame $esame) : bool
+    {
+        return in_array($esame->getNomeEsame(), $this->datiJSON['esamiInfo'] ?? [], true);
+    }
+
 }
