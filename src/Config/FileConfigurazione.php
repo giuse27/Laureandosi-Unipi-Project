@@ -84,9 +84,9 @@ class FileConfigurazione
     /**
      * Verifica se un esame è valido oppure no ai fini del conteggio dei CFU
      */
-    public function isValid(Esame $esame, string $cdl, string $mat) : bool
+    public function isValid(string $nomeEsame, string $cdl, string $mat) : bool
     {
-        return $this->fileFiltroEsami->isValid($esame, $cdl, $mat);
+        return $this->fileFiltroEsami->isValid($nomeEsame, $cdl, $mat);
     }
 
     /**

@@ -24,9 +24,8 @@ class FiltroEsami
         $this->datiJSON = $dati;
     }
 
-    public function isValid(Esame $esame, string $cdl, string $mat) : bool
+    public function isValid(string $nomeEsame, string $cdl, string $mat) : bool
     {
-        $nomeEsame = $esame->getNomeEsame();
 
         // Verifico se l'esame è presente nei filtri globali
         if (in_array($nomeEsame, $this->datiJSON['global']['NoCdl'] ?? [], true)) return false;
@@ -40,9 +39,8 @@ class FiltroEsami
         return true;
     }
 
-    public function faMedia(Esame $esame, string $cdl, string $mat): bool
+    public function faMedia(string $nomeEsame, string $cdl, string $mat): bool
     {
-        $nomeEsame = $esame->getNomeEsame();
 
         // Verifico se l'esame è presente nei filtri globali
         if (in_array($nomeEsame, $this->datiJSON['global']['NoAvg'] ?? [], true)) return false;
