@@ -1,5 +1,8 @@
 <?php
 
+// Carico l'autoloader di Composer per far funzionare i namespace
+require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
+
 namespace Laureandosi\Core;
 
 use Laureandosi\Config\FileConfigurazione;
