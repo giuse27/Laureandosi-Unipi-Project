@@ -1,42 +1,42 @@
 [
   {
     "cdlAlt": "INGEGNERIA BIOMEDICA (IBI-L)",
-    "cdlShort": "Tbio"
+    "cdlShort": "TBio"
   },
   {
     "cdlAlt": "INGEGNERIA ELETTRONICA (IEL-L)",
-    "cdlShort": "Tele"
+    "cdlShort": "TEle"
   },
   {
     "cdlAlt": "INGEGNERIA INFORMATICA (IFO-L)",
-    "cdlShort": "Tinf"
+    "cdlShort": "TInf"
   },
   {
     "cdlAlt": "INGEGNERIA DELLE TELECOMUNICAZIONI (ITC-L)",
-    "cdlShort": "Ttel"
+    "cdlShort": "TTel"
   },
   {
     "cdlAlt": "INGEGNERIA BIOMEDICA (WIB-LM)",
-    "cdlShort": "Mbio"
+    "cdlShort": "MBio"
   },
   {
     "cdlAlt": "INGEGNERIA ELETTRONICA (WIE-LM)",
-    "cdlShort": "Mele"
+    "cdlShort": "MEle"
   },
   {
     "cdlAlt": "COMPUTER ENGINEERING (WCN-LM)",
-    "cdlShort": "Mcoe"
+    "cdlShort": "MCoe"
   },
   {
     "cdlAlt": "ARTIFICIAL INTELLIGENCE AND DATA ENGINEERING (WAI-LM)",
-    "cdlShort": "Maid"
+    "cdlShort": "MAid"
   },
   {
     "cdlAlt": "INGEGNERIA ROBOTICA E DELLA AUTOMAZIONE (WIM-LM)",
-    "cdlShort": "Mrob"
+    "cdlShort": "MRob"
   },
   {
     "cdlAlt": "INGEGNERIA DELLE TELECOMUNICAZIONI (WIT-LM)",
-    "cdlShort": "Mtel"
+    "cdlShort": "MTel"
   }
 ]

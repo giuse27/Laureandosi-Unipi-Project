@@ -1,9 +1,9 @@
 {
   "corsi": {
-    "Tbio": {
+    "TBio": {
       "cdl": "T. Ing. Biomedica",
       "cdlAlt": "INGEGNERIA BIOMEDICA (IBI-L)",
-      "cdlShort": "Tbio",
+      "cdlShort": "TBio",
       "formulaLaurea": "(110/27.17)*(M*CFU+T*3)/(CFU+3)",
       "totCFU": 177,
       "parT": {
@@ -19,10 +19,10 @@
       "forceThesisValue": false,
       "notaFinale": "VOTO DI LAUREA FINALE: scegli il voto di tesi, prendi il corrispondente voto di laurea ed arrotonda"
     },
-    "Tele": {
+    "TEle": {
       "cdl": "T. Ing. Elettronica",
       "cdlAlt": "INGEGNERIA ELETTRONICA (IEL-L)",
-      "cdlShort": "Tele",
+      "cdlShort": "TEle",
       "formulaLaurea": "2+4*(M*CFU +T*3)/(CFU+3)",
       "totCFU": 177,
       "parT": {
@@ -38,10 +38,10 @@
       "forceThesisValue": false,
       "notaFinale": "VOTO DI LAUREA FINALE: scegli il voto di tesi, prendi il corrispondente voto di laurea ed arrotonda"
     },
-    "Tinf": {
+    "TInf": {
       "cdl": "T. Ing. Informatica",
       "cdlAlt": "INGEGNERIA INFORMATICA (IFO-L)",
-      "cdlShort": "Tinf",
+      "cdlShort": "TInf",
       "formulaLaurea": "M*3+18+T+C",
       "totCFU": 177,
       "parT": {
@@ -57,10 +57,10 @@
       "forceThesisValue": true,
       "notaFinale": "VOTO DI LAUREA FINALE: scegli il voto commissione, prendi il corrispondente voto di laurea e somma il voto di tesi tra MIN e MAX, quindi arrotonda"
     },
-    "Ttel": {
+    "TTel": {
       "cdl": "T. Ing. delle Telecomunicazioni",
       "cdlAlt": "INGEGNERIA DELLE TELECOMUNICAZIONI (ITC-L)",
-      "cdlShort": "Ttel",
+      "cdlShort": "TTel",
       "formulaLaurea": "M*11/3+C",
       "totCFU": 177,
       "parT": {
@@ -76,10 +76,10 @@
       "forceThesisValue": false,
       "notaFinale": "VOTO DI LAUREA FINALE: scegli il voto commissione, prendi il corrispondente voto di laurea ed arrotonda"
     },
-    "Mbio": {
+    "MBio": {
       "cdl": "M. Ing. Biomedica, Bionics Engineering",
       "cdlAlt": "INGEGNERIA BIOMEDICA (WIB-LM)",
-      "cdlShort": "Mbio",
+      "cdlShort": "MBio",
       "formulaLaurea": "M*3.5+11+C",
       "totCFU": 105,
       "parT": {
@@ -95,10 +95,10 @@
       "forceThesisValue": false,
       "notaFinale": "VOTO DI LAUREA FINALE: scegli il voto commissione, prendi il corrispondente voto di laurea ed arrotonda"
     },
-    "Mele": {
+    "MEle": {
       "cdl": "M. Ing. Elettronica",
       "cdlAlt": "INGEGNERIA ELETTRONICA (WIE-LM)",
-      "cdlShort": "Mele",
+      "cdlShort": "MEle",
       "formulaLaurea": "4*(M*CFU+T*18)/(CFU+18)",
       "totCFU": 102,
       "parT": {
@@ -114,10 +114,10 @@
       "forceThesisValue": false,
       "notaFinale": "VOTO DI LAUREA FINALE: scegli il voto di tesi, prendi il corrispondente voto di laurea ed arrotonda"
     },
-    "Mcoe": {
+    "MCoe": {
       "cdl": "M. Computer Engineering",
       "cdlAlt": "COMPUTER ENGINEERING (WCN-LM)",
-      "cdlShort": "Mcoe",
+      "cdlShort": "MCoe",
       "formulaLaurea": "M*3+22+T+C",
       "totCFU": 96,
       "parT": {
@@ -133,10 +133,10 @@
       "forceThesisValue": true,
       "notaFinale": "VOTO DI LAUREA FINALE: scegli il voto commissione, prendi il corrispondente voto di laurea e somma il voto di tesi tra MIN e MAX, quindi arrotonda"
     },
-    "Maid": {
+    "MAid": {
       "cdl": "M. Artificial Intelligence and Data Enginering",
       "cdlAlt": "ARTIFICIAL INTELLIGENCE AND DATA ENGINEERING (WAI-LM)",
-      "cdlShort": "Maid",
+      "cdlShort": "MAid",
       "formulaLaurea": "M*3+22+T+C",
       "totCFU": 96,
       "parT": {
@@ -152,10 +152,10 @@
       "forceThesisValue": true,
       "notaFinale": "VOTO DI LAUREA FINALE: scegli il voto commissione, prendi il corrispondente voto di laurea e somma il voto di tesi tra MIN e MAX, quindi arrotonda"
     },
-    "Mrob": {
+    "MRob": {
       "cdl": "M. Ing. Robotica e della Automazione",
       "cdlAlt": "INGEGNERIA ROBOTICA E DELLA AUTOMAZIONE (WIM-LM)",
-      "cdlShort": "Mrob",
+      "cdlShort": "MRob",
       "formulaLaurea": "M*3+18.5+T",
       "totCFU": 102,
       "parT": {
@@ -171,10 +171,10 @@
       "forceThesisValue": false,
       "notaFinale": "VOTO DI LAUREA FINALE: scegli il voto di tesi, prendi il corrispondente voto di laurea ed arrotonda"
     },
-    "Mtel": {
+    "MTel": {
       "cdl": "M. Ing. delle Telecomunicazioni",
       "cdlAlt": "INGEGNERIA DELLE TELECOMUNICAZIONI (WIT-LM)",
-      "cdlShort": "Mtel",
+      "cdlShort": "MTel",
       "formulaLaurea": "M*11/3+C",
       "totCFU": 96,
       "parT": {
