@@ -1,0 +1,68 @@
+{
+  "123456": {
+    "Entries": {
+      "Entry": {
+        "nome": "GIANLUIGI",
+        "cognome": "DONNARUMMA",
+        "codFis": "ABCDEFX12X12X123X",
+        "dataNascita": "1997-06-14T00:00:00.000+02:00",
+        "emailAte": "g.vaglica@studenti.unipi.it"
+      }
+    }
+  },
+  "234567": {
+    "Entries": {
+      "Entry": {
+        "nome": "ALESSANDRO",
+        "cognome": "BASTONI",
+        "codFis": "ABCDEFX12X12X123X",
+        "dataNascita": "1995-08-04T00:00:00.000+02:00",
+        "emailAte": "g.vaglica@studenti.unipi.it"
+      }
+    }
+  },
+  "345678": {
+    "Entries": {
+      "Entry": {
+        "nome": "NICCOLO",
+        "cognome": "BARELLA",
+        "codFis": "ABCDEFX12X12X123X",
+        "dataNascita": "2000-02-04T00:00:00.000+01:00",
+        "emailAte": "g.vaglica@studenti.unipi.it"
+      }
+    }
+  },
+  "456789": {
+    "Entries": {
+      "Entry": {
+        "nome": "MATTEO",
+        "cognome": "POLITANO",
+        "codFis": "ABCDEFX12X12X123X",
+        "dataNascita": "1996-01-11T00:00:00.000+01:00",
+        "emailAte": "g.vaglica@studenti.unipi.it"
+      }
+    }
+  },
+  "567890": {
+    "Entries": {
+      "Entry": {
+        "nome": "FRANCESCO",
+        "cognome": "ACERBI",
+        "codFis": "ABCDEFX12X12X123X",
+        "dataNascita": "1977-07-27T00:00:00.000+02:00",
+        "emailAte": "g.vaglica@studenti.unipi.it"
+      }
+    }
+  },
+  "default": {
+    "Entries": {
+      "Entry": {
+        "nome": "PINCO",
+        "cognome": "PALLINO",
+        "codFis": "ABCDEFX12X12X123X",
+        "dataNascita": "1999-05-01T00:00:00.000+01:00",
+        "emailAte": "g.vaglica@studenti.unipi.it"
+      }
+    }
+  }
+}
