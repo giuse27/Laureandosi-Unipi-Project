@@ -1,9 +1,9 @@
 <?php
 
+namespace Laureandosi\Core;
+
 // Carico l'autoloader di Composer per far funzionare i namespace
 require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
-
-namespace Laureandosi\Core;
 
 use Laureandosi\Config\FileConfigurazione;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -40,17 +40,22 @@ class GestoreEmail
         $this->delaySpam = 13;
     }
 
-    public function InviaEmail(string $destinatario, string $allegato = ''): string
+    public function InviaEmail(string $destinatario, string $allegato = ''): array
     {
+        $risultati = [];
+
         $mail = new PHPMailer(true);
 
         $pathAllegato = dirname(__DIR__, 2) . '/prospetti/' . $this->cdl . '/' . $allegato;
         if (!file_exists($pathAllegato)) {
-            return "Errore: allegato non trovato ($allegato).";
+            $risultati['success'] = false;
+            $risultati['type'] = 'error';
+            $risultati['message'] = "Errore: allegato non trovato ($allegato).";
+            return $risultati;
         }
         
         try {
-            
+
             $mail->isSMTP();
             $mail->Host = $this->host;
             $mail->SMTPAuth = false;
@@ -71,10 +76,16 @@ class GestoreEmail
             $mail->send();
             $mail->smtpClose();
 
-            return "Email inviata con successo a $destinatario.";
+            $risultati['success'] = true;
+            $risultati['type'] = 'success';
+            $risultati['message'] = "Email inviata con successo a $destinatario.";
+            return $risultati;
 
         } catch (Exception $e) {
-            return "Errore durante l'invio dell'email: " . $e->getMessage();
+            $risultati['success'] = false;
+            $risultati['type'] = 'error';
+            $risultati['message'] = "Errore durante l'invio dell'email: " . $e->getMessage();
+            return $risultati;
         }
     }
 }
