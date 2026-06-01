@@ -1,1 +1,80 @@
 <?php
+
+// Carico l'autoloader di Composer per far funzionare i namespace
+require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
+
+namespace Laureandosi\Core;
+
+use Laureandosi\Config\FileConfigurazione;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+class GestoreEmail
+{
+    private FileConfigurazione $fileConfigurazione;
+
+    private int $delaySpam; // Tempo in secondi per evitare spam
+    private string $nomeMittente;
+    private string $mittente;
+    private string $oggettoEmail;
+    private string $corpoEmail;
+    private string $host;
+    private string $cdl;
+
+    public function __construct(string $cdl)
+    {   
+        // accedo al file di configurazione per caricare i parametri email
+        $this->fileConfigurazione = new FileConfigurazione();
+        $config = $this->fileConfigurazione->getEmailConfig();
+
+        // configurazione dei parametri email
+        $this->nomeMittente = $config['email']['fromName'];
+        $this->mittente = $config['email']['fromMail'];
+        $obj = $config['email']['subject'];
+        $this->oggettoEmail = str_replace('INSERISCI_CDL', $config['corsi'][$cdl]['cdl'], $obj);
+        $this->corpoEmail = $config['email']['body'];
+        $this->host = $config['email']['host'];
+        $this->cdl = $cdl;
+
+        // imposto infine il tempo di delay per evitare spam (def. 13 secondi)
+        $this->delaySpam = 13;
+    }
+
+    public function InviaEmail(string $destinatario, string $allegato = ''): string
+    {
+        $mail = new PHPMailer(true);
+
+        $pathAllegato = dirname(__DIR__, 2) . '/prospetti/' . $this->cdl . '/' . $allegato;
+        if (!file_exists($pathAllegato)) {
+            return "Errore: allegato non trovato ($allegato).";
+        }
+        
+        try {
+            
+            $mail->isSMTP();
+            $mail->Host = $this->host;
+            $mail->SMTPAuth = false;
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 25;
+
+            $mail->CharSet = 'UTF-8';
+            $mail->Encoding = 'base64';
+
+            $mail->setFrom($this->mittente, $this->nomeMittente);
+            $mail->addAddress($destinatario);
+
+            $mail->Subject = $this->oggettoEmail;
+            $mail->Body = $this->corpoEmail;
+
+            $mail->addAttachment($pathAllegato);
+
+            $mail->send();
+            $mail->smtpClose();
+
+            return "Email inviata con successo a $destinatario.";
+
+        } catch (Exception $e) {
+            return "Errore durante l'invio dell'email: " . $e->getMessage();
+        }
+    }
+}

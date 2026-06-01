@@ -11,10 +11,10 @@ class FileConfigurazione
 
     private string $configDir;
 
-    public function __construct(array $elencoFile = [])
+    public function __construct(string $configDir = '')
     {
-        $this->configDir = dirname(__DIR__, 2) . '/config';
-        // inizializzazione da elencoFile...
+        // Se non viene specificata una directory di configurazione, usa quella di default
+        $this->configDir = $configDir ?: dirname(__DIR__, 2) . '/config';
     }
 
     /**
@@ -37,6 +37,24 @@ class FileConfigurazione
 
         return $corsi_di_laurea;
     }
+
+    public function getEmailConfig(): array 
+    { 
+        $path = $this->configDir . '/formule_voto_laurea.json';
+
+        if (!file_exists($path)) {
+            throw new \RuntimeException("File formule_voto_laurea.json non trovato in: $path");
+        }
+
+        $json = file_get_contents($path);
+        $config = json_decode($json, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new \RuntimeException("JSON non valido: " . json_last_error_msg());
+        }
+
+        return $config;
+     }
 
     public function getFiltroEsami(): FiltroEsami { /* ... */ }
     public function getFiltroEsamiInf(): FiltroEsamiInformatici { /* ... */ }
