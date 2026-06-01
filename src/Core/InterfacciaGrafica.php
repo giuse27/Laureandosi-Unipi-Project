@@ -1,9 +1,9 @@
 <?php
 
+namespace Laureandosi\Core;
+
 // Carico l'autoloader di Composer per far funzionare i namespace
 require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
-
-namespace Laureandosi\Core;
 
 use Laureandosi\Config\FileConfigurazione;
 use Laureandosi\Config\FormulaMedia;
@@ -36,6 +36,10 @@ class InterfacciaGrafica
     public function InviaProspetti(string $cdl): array
     {
         $risultati = [];
+
+        // TEST DA RIMUOVERE
+        $Email = new GestoreEmail($cdl);
+        $risultati = $Email->InviaEmail('g.vaglica@studenti.unipi.it', 'Vaglica.pdf');
 
         return $risultati;
     }
