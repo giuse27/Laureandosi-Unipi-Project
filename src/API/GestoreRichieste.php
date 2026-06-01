@@ -76,8 +76,10 @@ try {
             if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
                 inviaErrore(405, "Metodo non consentito. Usa GET.");
             }
-            
-            $corsi = FileConfigurazione::getCorsiDiLaurea();
+
+            $fileConfig = new FileConfigurazione();
+            $corsi = $fileConfig->getCorsiDiLaurea();
+
             inviaRisposta(true, '', '', $corsi);
             break;
 
