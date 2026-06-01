@@ -28,6 +28,9 @@ namespace Laureandosi\Config;
 
 class FormulaMedia {
 
+    private string $path;
+    private array $datiJson;
+
     // Dati identificativi
     private string $cdl;
     private string $cdlAlt;
@@ -62,23 +65,26 @@ class FormulaMedia {
 
     public function __construct(string $path) {
 
+        $this->path = $path;
+
         if (!file_exists($path)) {
             throw new \RuntimeException("File di configurazione non trovato in: $path");
         }
 
         $json = file_get_contents($path);
         $dati = json_decode($json, true);
+        $this->datiJson = $dati;
 
         if (json_last_error() !== JSON_ERROR_NONE) {
             throw new \RuntimeException("JSON non valido: " . json_last_error_msg());
         }
 
-        $this->cdl              = (string)  ($dati['cdl']               ?? $this->cdlShort  );
-        $this->cdlAlt           = (string)  ($dati['cdlAlt']            ?? ''               );
         $this->cdlShort         = (string)  ($dati['cdlShort']          ?? ''               );
+        $this->cdlAlt           = (string)  ($dati['cdlAlt']            ?? ''               );
+        $this->cdl              = (string)  ($dati['cdl']               ?? $this->cdlShort  );
         $this->formulaLaurea    = (string)  ($dati['formulaLaurea']     ?? ''               );
         $this->totCFU           = (int)     ($dati['totCFU']            ?? 0                );
-        $this->forceThesisValue = (string)  ($dati['forceThesisValue']  ?? false            );
+        $this->forceThesisValue = (bool)    ($dati['forceThesisValue']  ?? false            );
         $this->notaFinale       = (string)  ($dati['notaFinale']        ?? ''               );
         $this->lodeValue        = (int)     ($dati['lode']              ?? 0                );
 
@@ -97,6 +103,11 @@ class FormulaMedia {
     // =========================================================================
     // Funzioni Getter, di utilità per recuperare i valori privati
     // =========================================================================
+    
+    public function getJsonData(): array 
+    {
+        return $this->datiJson;
+    }
 
     public function getCdl(): string           { return $this->cdl; }
     public function getCdlAlt(): string        { return $this->cdlAlt; }

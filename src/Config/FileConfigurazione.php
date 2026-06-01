@@ -70,7 +70,7 @@ class FileConfigurazione
      */
     public function getEmailConfig(): array
     {
-        return $this->loadJsonConfig($this->path_formule_e_mail);
+        return $this->fileMediaEEmail->getJsonData();
     }
 
     /**
