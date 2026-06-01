@@ -8,6 +8,7 @@ require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
 use Laureandosi\Config\FileConfigurazione;
 use Laureandosi\Config\FormulaMedia;
 
+
 class InterfacciaGrafica
 {
     private FileConfigurazione $fileConfigurazione;
@@ -19,15 +20,14 @@ class InterfacciaGrafica
     /**
      * Pressione del pulsante "Genera Prospetti" che avvia la generazione dei prospetti per le matricole selezionate, il corso di laurea e la data di laurea specificati.
      */
-    public function GeneraProspetti(array $matricole, string $cdl, string $dataLaurea): array
+    public function GeneraProspetti(array $matricole, string $cdl, string $dataLaurea): void
     {
         $this->elencoMatricole = $matricole;
         $this->cdl = $cdl;
         $this->dataLaurea = $dataLaurea;
 
-        $response = [];
-
-        return $response;
+        $prospetto_commissione = new ProspettoCommissione($this->elencoMatricole, $this->cdl, $this->dataLaurea);
+        $prospetto_commissione->GeneraProspettoCommissione();
     }
 
     /**
