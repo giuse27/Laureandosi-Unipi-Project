@@ -77,4 +77,9 @@ class Esame
         }
     }
 
+    /**
+     * Funzioni getter di utilità
+     */
+    public function getNomeEsame(): string { return $this->nomeEsame; }
+
 }
