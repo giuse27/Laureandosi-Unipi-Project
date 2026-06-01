@@ -86,7 +86,12 @@ class FileConfigurazione
      */
     public function isValid(Esame $esame, string $cdl, string $mat) : bool
     {
+        return $this->fileFiltroEsami->isValid($esame, $cdl, $mat);
+    }
 
+    public function faMedia(Esame $esame, string $cdl, string $mat) : bool
+    {
+        return $this->fileFiltroEsami->faMedia($esame, $cdl, $mat);
     }
 
 }
