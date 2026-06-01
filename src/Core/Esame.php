@@ -45,10 +45,10 @@ class Esame
             $esameJSON['VOTO'] === "30L"
         ) ? $fileConfig->getLodeVal() : (int)$esameJSON['VOTO'];
 
-        $this->faMedia     = (bool)    ($esameJSON['fa_media']     ?? true);
+        $this->faMedia = $fileConfig->faMedia($this, $cdl, $mat);
 
         $this->sovranFlag = (bool)($esameJSON['SOVRAN_FLAG'] ?? false);
-        $this->lode = $this->voto > 30 ? true : false;
+        $this->lode = (bool)($this->voto > 30);
 
         $this->validate();
     }
@@ -81,5 +81,11 @@ class Esame
      * Funzioni getter di utilità
      */
     public function getNomeEsame(): string { return $this->nomeEsame; }
+    public function getCodiceEsame(): string { return $this->codiceEsame; }
+    public function getCfu(): int { return $this->cfu; }
+    public function getVoto(): int { return $this->voto; }
+    public function isFaMedia(): bool { return $this->faMedia; }
+    public function isSovranFlag(): bool { return $this->sovranFlag; }
+    public function isLode(): bool { return $this->lode; }
 
 }
