@@ -121,8 +121,8 @@ try {
             }
 
             $risultati = $interfaccia->InviaProspetti($cdl);
-
-            inviaRisposta(true, '', 'Prospetti inviati con successo (TODO)');
+            
+            inviaRisposta($risultati['success'], $risultati['type'], $risultati['message']);
             break;
 
         default:
