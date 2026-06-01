@@ -82,13 +82,16 @@ class FileConfigurazione
     }
 
     /**
-     * Verifica se un esame fa media oppure no
+     * Verifica se un esame è valido oppure no ai fini del conteggio dei CFU
      */
     public function isValid(Esame $esame, string $cdl, string $mat) : bool
     {
         return $this->fileFiltroEsami->isValid($esame, $cdl, $mat);
     }
 
+    /**
+     * Verifica se un esame è valido ai fini del calcolo della media
+     */
     public function faMedia(Esame $esame, string $cdl, string $mat) : bool
     {
         return $this->fileFiltroEsami->faMedia($esame, $cdl, $mat);
