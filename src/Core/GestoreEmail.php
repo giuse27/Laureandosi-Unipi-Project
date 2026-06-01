@@ -21,6 +21,10 @@ class GestoreEmail
     private string $host;
     private string $cdl;
 
+    /**
+     * Costruttore che accetta il corso di laurea per cui si vogliono inviare le email. 
+     * Carica la configurazione email dal file di configurazione e imposta i parametri necessari per l'invio delle email.
+     */
     public function __construct(string $cdl)
     {   
         // accedo al file di configurazione per caricare i parametri email
@@ -40,7 +44,11 @@ class GestoreEmail
         $this->delaySpam = 13;
     }
 
-    public function InviaEmail(string $destinatario, string $allegato = ''): array
+    /**
+     * Invia un'email con allegato al destinatario specificato. 
+     * Restituisce un array con i risultati dell'operazione, inclusi eventuali errori.
+     */
+    public function InviaEmailConAllegato(string $destinatario, string $allegato = ''): array
     {
         $risultati = [];
 

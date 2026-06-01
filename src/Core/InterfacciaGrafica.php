@@ -10,38 +10,52 @@ use Laureandosi\Config\FormulaMedia;
 
 class InterfacciaGrafica
 {
+    private FileConfigurazione $fileConfigurazione;
+    
     private array $elencoMatricole;
     private string $cdl;
     private string $dataLaurea;
-    private FileConfigurazione $fileConfigurazione;
 
+    /**
+     * Pressione del pulsante "Genera Prospetti" che avvia la generazione dei prospetti per le matricole selezionate, il corso di laurea e la data di laurea specificati.
+     */
     public function GeneraProspetti(array $matricole, string $cdl, string $dataLaurea): array
     {
         $this->elencoMatricole = $matricole;
         $this->cdl = $cdl;
         $this->dataLaurea = $dataLaurea;
 
-        $prospettiGenerati = [];
+        $response = [];
 
-        return $prospettiGenerati;
+        return $response;
     }
 
+    /**
+     * Pressione del pulsante "Apri Prospetti" che avvia l'apertura dei prospetti per il corso di laurea specificato.
+     */
     public function ApriProspetti(string $cdl): array
     {
-        $risultati = [];
+        $this->cdl = $cdl;
 
-        return $risultati;
+        $response = [];
+
+        return $response;
     }
 
+    /**
+     * Pressione del pulsante "Invia Prospetti" che avvia l'invio dei prospetti per il corso di laurea specificato.
+     */
     public function InviaProspetti(string $cdl): array
     {
-        $risultati = [];
+        $this->cdl = $cdl;
+
+        $response = [];
 
         // TEST DA RIMUOVERE
         $Email = new GestoreEmail($cdl);
-        $risultati = $Email->InviaEmail('g.vaglica@studenti.unipi.it', 'Vaglica.pdf');
+        $response = $Email->InviaEmailConAllegato('g.vaglica@studenti.unipi.it', 'Vaglica.pdf');
 
-        return $risultati;
+        return $response;
     }
 
     public function getElencoMatricole(): array { return $this->elencoMatricole; }

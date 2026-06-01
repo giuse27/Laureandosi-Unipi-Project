@@ -11,6 +11,11 @@ class FileConfigurazione
 
     private string $configDir;
 
+    /**
+     * Costruttore che accetta una directory di configurazione opzionale. Se non viene fornita, utilizza la directory di default.
+     * 
+     * configDir: Directory in cui si trovano i file di configurazione JSON.
+     */
     public function __construct(string $configDir = '')
     {
         // Se non viene specificata una directory di configurazione, usa quella di default
@@ -38,6 +43,9 @@ class FileConfigurazione
         return $corsi_di_laurea;
     }
 
+    /**
+     * Restituisce le informazioni di configurazione per le email
+     */
     public function getEmailConfig(): array 
     { 
         $path = $this->configDir . '/formule_voto_laurea.json';
@@ -56,7 +64,4 @@ class FileConfigurazione
         return $config;
      }
 
-    public function getFiltroEsami(): FiltroEsami { /* ... */ }
-    public function getFiltroEsamiInf(): FiltroEsamiInformatici { /* ... */ }
-    public function getFormule(): array { /* ... */ }
 }
