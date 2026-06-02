@@ -14,9 +14,9 @@ class FileConfigurazione
     private string $configDir;
     private string $path_elenco_cdl;
 
-    private FormulaMedia $fileMediaEEmail;
-    private FiltroEsami $fileFiltroEsami;
-    private FiltroEsamiInformatici $fileFiltroEsamiInformatici;
+    public FormulaMedia $fileMediaEEmail;
+    public FiltroEsami $fileFiltroEsami;
+    public FiltroEsamiInformatici $fileFiltroEsamiInformatici;
 
 
     /**
@@ -62,38 +62,6 @@ class FileConfigurazione
     public function getCorsiDiLaurea(): array
     {
         return $this->loadJsonConfig($this->path_elenco_cdl);
-    }
-
-    /**
-     * Restituisce le informazioni di configurazione per le email
-     */
-    public function getEmailConfig(): array
-    {
-        return $this->fileMediaEEmail->getJsonData();
-    }
-
-    /**
-     * Restituisce il valore della lode
-     */
-    public function getLodeVal(): int
-    {
-        return $this->fileMediaEEmail->getLodeValue();
-    }
-
-    /**
-     * Verifica se un esame è valido oppure no ai fini del conteggio dei CFU
-     */
-    public function isValid(string $nomeEsame, string $cdl, string $mat) : bool
-    {
-        return $this->fileFiltroEsami->isValid($nomeEsame, $cdl, $mat);
-    }
-
-    /**
-     * Verifica se un esame è valido ai fini del calcolo della media
-     */
-    public function faMedia(Esame $esame, string $cdl, string $mat) : bool
-    {
-        return $this->fileFiltroEsami->faMedia($esame, $cdl, $mat);
     }
 
 }
