@@ -89,4 +89,6 @@ class CarrieraLaureando
         return $media_pesata;
     }
 
+    public function getEsamiValidi(): array { return $this->esamiValidi; }
+
 }
