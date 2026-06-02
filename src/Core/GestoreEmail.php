@@ -46,7 +46,7 @@ class GestoreEmail
 
     /**
      * Invia un'email con allegato al destinatario specificato. 
-     * Restituisce un array con i risultati dell'operazione, inclusi eventuali errori.
+     * Restituisce un array con i risultati dell'operazione, inclusi eventuali errori. 
      */
     public function InviaEmailConAllegato(string $destinatario, string $allegato = ''): array
     {

@@ -24,7 +24,7 @@ class Esame
      * true → esame sostenuto come sovranumerario.
      * Un esame sovranumerario NON entra nella media anche se faMedia fosse true;
      * la logica di esclusione è in carico a chi popola faMedia, ma il flag
-     * è conservato per trasparenza nel prospetto.
+     * è conservato per trasparenza nel prospetto. 
      */
     protected bool $sovranFlag;
 

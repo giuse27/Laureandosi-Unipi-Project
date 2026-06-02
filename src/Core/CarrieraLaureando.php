@@ -37,7 +37,7 @@ class CarrieraLaureando
             }
         }
 
-        // Calcola subito CFU e Media dopo aver recuperato gli esami e salvo i risultati nelle proprietà della classe 
+        // Calcola subito CFU e Media dopo aver recuperato gli esami e salvo i risultati nelle proprietà della classe
         $this->cfuTotali = $this->getTotaleCfu();
         $this->cfuMedia = $this->getCfuMedia();
         $this->media = $this->getMedia();
