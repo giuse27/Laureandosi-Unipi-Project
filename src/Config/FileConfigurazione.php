@@ -5,7 +5,6 @@ namespace Laureandosi\Config;
 require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
 
 use Laureandosi\Core\Esame;
-use Mpdf\Form;
 use Laureandosi\Config\FormulaMedia;
 use Laureandosi\Config\FiltroEsami;
 use Laureandosi\Config\FiltroEsamiInformatici;
