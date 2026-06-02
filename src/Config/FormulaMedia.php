@@ -81,4 +81,53 @@ class FormulaMedia {
         return (string)($this->datiJson['corsi'][$cdlShort]['formulaLaurea']);
     }
 
+    public function whichParam(string $cdlShort): string
+    {
+        $corso = $this->datiJson['corsi'][$cdlShort];
+        //se parC.step === 0 uso T, altrimenti C
+        $parCStep = (float)($corso['parC']['step'] ?? 0);
+        $param = ($parCStep === 0.0) ? "T" : "C";
+        return $param;
+    }
+
+    public function getMinParam(string $cdlShort, string $param): string
+    {
+        $corso = $this->datiJson['corsi'][$cdlShort];
+        $parKey = 'par' . $param;
+        $minParam  = (float)($corso[$parKey]['min'] ?? 0);
+    }
+
+    public function getMaxParam(string $cdlShort, string $param): string
+    {
+        $corso = $this->datiJson['corsi'][$cdlShort];
+        $parKey = 'par' . $param;
+        $maxParam  = (float)($corso[$parKey]['max'] ?? 0);
+    }
+
+    public function getStepParam(string $cdlShort, string $param): string
+    {
+        $corso = $this->datiJson['corsi'][$cdlShort];
+        $parKey = 'par' . $param;
+        $stepParam = (float)($corso[$parKey]['step'] ?? 0);
+    }
+
+    public function calcolaVotoLaurea(string $cdlShort, float $M, int $CFU, float $T = 0, float $C = 0) : float
+    {
+        $corso = $this->datiJson['corsi'][$cdlShort];
+        $formulaVoto = (string)($corso['formulaLaurea'] ?? '');
+        $formula = str_replace(
+            ['M', 'CFU', 'T', 'C'],
+            [$M, $CFU, $T, $C],
+            $formulaVoto
+        );
+        $result = eval("return $formula;");
+        return round($result, 3);
+    }
+
+    public function getNotaFinale(string $cdlShort): string
+    {
+        $corso = $this->datiJson['corsi'][$cdlShort];
+        return (string)($corso['notaFinale'] ?? '');
+    }
+
 }
