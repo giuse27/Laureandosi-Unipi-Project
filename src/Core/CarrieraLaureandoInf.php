@@ -132,4 +132,6 @@ class CarrieraLaureandoInf extends CarrieraLaureando
         return $media_pesata;
     }
 
+    public function isBonus(): bool { return $this->bonus; }
+
 }
