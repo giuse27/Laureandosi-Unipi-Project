@@ -10,6 +10,7 @@ use Laureandosi\Core\CarrieraLaureandoInf;
 use Laureandosi\Config\FileConfigurazione;
 use Laureandosi\Core\Esame;
 use Laureandosi\Core\EsameInformatico;
+use Mpdf\Mpdf;
 
 class ProspettoLaureando
 {
@@ -22,6 +23,8 @@ class ProspettoLaureando
 
     private AnagraficaLaureando $anagrafica;
     private CarrieraLaureando | CarrieraLaureandoInf $carriera;
+
+    private Mpdf $prospettoPDF;
 
     public function __construct(string $mat, string $cdl, string $data)
     {
@@ -51,7 +54,8 @@ class ProspettoLaureando
      */
     public function SalvaProspetto(): string
     {
-        $this->path .= '/' . $this->cdl . '/';
+
+        $path = $this->path . '/' . $this->cdl . '/';
 
         if (!is_dir($path)) {
             mkdir($path, 0777, true);
@@ -105,16 +109,17 @@ class ProspettoLaureando
         $html .= '<tr><td>MediaPesata (M):</td><td>' . htmlspecialchars(round($this->carriera->getMedia(), 3)) . '</td></tr>';
         $html .= '<tr><td>Crediti che fanno media (CFU):</td><td>' . htmlspecialchars($this->carriera->getCfuMedia()) . '</td></tr>';
         $html .= '<tr><td>Crediti curriculari conseguiti:</td><td>' . htmlspecialchars($this->carriera->getTotaleCfu()).'/'.htmlspecialchars($this->config->fileMediaEEmail->getCfuNecessari($this->cdl)) . '</td></tr>';
-        if(FormuleVotoLaurea::ServeTesi($this->Cdl)) $html .= '<tr><td>Voto di tesi (T):</td><td> 0 </td></tr>';
-        $html .= '<tr><td>Formula calcolo voto di laurea:</td><td>' . htmlspecialchars($this->FormulaVotoLaurea->Formula ?? '') . '</td></tr>';
-        if($this->Cdl=="TInf")$html .= '<tr><td>Media pesata esami INF:</td><td>' . htmlspecialchars(round($this->Carriera->MediaEsamiInf, 3)) . '</td></tr>';
+        if($this->config->fileMediaEEmail->getServeTesi($this->cdl)) $html .= '<tr><td>Voto di tesi (T):</td><td> 0 </td></tr>';
+        $html .= '<tr><td>Formula calcolo voto di laurea:</td><td>' . htmlspecialchars($this->config->fileMediaEEmail->getFormulaLaurea($this->cdl) ?? '') . '</td></tr>';
+        if($this->Cdl == "TInf") $html .= '<tr><td>Media pesata esami INF:</td><td>' . htmlspecialchars(round($this->carriera->getMediaEsamiInformatici(), 3)) . '</td></tr>';
         $html .= '</table></div>';
-        $this->ProspettoPDF->WriteHTML($html);
 
-        $nomeFile = $this->Matricola . '.pdf';
+        $this->prospettoPDF->WriteHTML($html);
+
+        $nomeFile = $this->matricola . '.pdf';
         $fullPath = $path . DIRECTORY_SEPARATOR . $nomeFile;
-
-        $this->ProspettoPDF->Output($fullPath, 'F');
+        
+        $this->prospettoPDF->Output($fullPath, 'F');
 
         // restituisco l'HTML  generato in modo che possa essere incluso in un PDF di Commissione
         return $html;
