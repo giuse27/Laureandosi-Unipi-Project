@@ -43,9 +43,9 @@ class Esame
             $esameJSON['VOTO'] === "30 e lode" ||
             $esameJSON['VOTO'] === "30  e lode " ||
             $esameJSON['VOTO'] === "30L"
-        ) ? $fileConfig->getLodeVal() : (int)$esameJSON['VOTO'];
+        ) ? $fileConfig->fileMediaEEmail->getLodeValue() : (int)$esameJSON['VOTO'];
 
-        $this->faMedia = $fileConfig->faMedia($this, $cdl, $mat);
+        $this->faMedia = $fileConfig->fileFiltroEsami->faMedia($this->nomeEsame, $cdl, $mat);
 
         $this->sovranFlag = (bool)($esameJSON['SOVRAN_FLAG'] ?? false);
         $this->lode = (bool)($this->voto > 30);
@@ -87,5 +87,7 @@ class Esame
     public function isFaMedia(): bool { return $this->faMedia; }
     public function isSovranFlag(): bool { return $this->sovranFlag; }
     public function isLode(): bool { return $this->lode; }
+
+    public function setFaMedia(bool $faMedia): void { $this->faMedia = $faMedia; }
 
 }

@@ -27,9 +27,9 @@ class FiltroEsamiInformatici
         $this->datiJSON = $dati;
     }
 
-    public function isValid(Esame $esame) : bool
+    public function isInformatico(string $nome_esame) : bool
     {
-        return in_array($esame->getNomeEsame(), $this->datiJSON['esamiInfo'] ?? [], true);
+        return in_array($nome_esame, $this->datiJSON['esamiInfo'] ?? [], true);
     }
 
 }

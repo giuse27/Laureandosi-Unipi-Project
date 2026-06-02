@@ -31,7 +31,7 @@ class CarrieraLaureando
         $config = new FileConfigurazione();
 
         foreach ($carriera['Esami']['Esame'] as $esame) {
-            if ($esame['SOVRAN_FLG'] === 0 && $config->isValid($esame['DES'], $cdl, $mat)) {
+            if ($esame['SOVRAN_FLG'] === 0 && $config->fileFiltroEsami->isValid($esame['DES'], $cdl, $mat)) {
                 $e = new Esame($esame, $cdl, $mat);
                 $this->esamiValidi[] = $e;
             }

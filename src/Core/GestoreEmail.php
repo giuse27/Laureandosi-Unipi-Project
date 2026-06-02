@@ -29,7 +29,7 @@ class GestoreEmail
     {   
         // accedo al file di configurazione per caricare i parametri email
         $this->fileConfigurazione = new FileConfigurazione();
-        $config = $this->fileConfigurazione->getEmailConfig();
+        $config = $this->fileConfigurazione->fileMediaEEmail->getJsonData();
 
         // configurazione dei parametri email
         $this->nomeMittente = $config['email']['fromName'];
