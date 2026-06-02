@@ -10,14 +10,14 @@ use Laureandosi\Core\Esame;
 
 class CarrieraLaureando
 {
-    private string $matricola;
-    private string $cdl;
-    private string $dataLaurea;
+    protected string $matricola;
+    protected string $cdl;
+    protected string $dataLaurea;
     /** @var Esame[] */
-    private array $esamiValidi = [];
-    private int $cfuTotali = 0;
-    private int $cfuMedia = 0;
-    private float $media = 0.0;
+    protected array $esamiValidi = [];
+    protected int $cfuTotali = 0;
+    protected int $cfuMedia = 0;
+    protected float $media = 0.0;
 
     public function __construct(string $mat, string $cdl, string $data)
     {
