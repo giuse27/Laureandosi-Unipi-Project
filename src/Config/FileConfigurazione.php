@@ -64,4 +64,10 @@ class FileConfigurazione
         return $this->loadJsonConfig($this->path_elenco_cdl);
     }
 
+    public function getNomeCdl($cdlShort): string
+    {
+        $dati = $this->fileMediaEEmail->getJsonData();
+        return (string)($dati['corsi'][$cdlShort]['cdl']);
+    }
+
 }
