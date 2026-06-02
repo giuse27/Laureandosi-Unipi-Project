@@ -77,7 +77,7 @@ class CarrieraLaureandoInf extends CarrieraLaureando
 
     public function applicaBonus(): void
     {
-        // Individua l'esame peggior valutato tra quelli che contano per la media
+        // Individua l'esame peggior valutato tra quelli che contano per la media 
         /** @var Esame $worst */
         $worst = null;
 
