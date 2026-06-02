@@ -94,9 +94,20 @@ try {
                 inviaErrore(400, "Dati mancanti o non validi in 'btn-crea'.");
             }
 
+            // cancello i vecchi prospetti se presenti
+            $path = dirname(__DIR__, 2) . '/prospetti/' . $cdl . '/';
+
+            if (is_dir($path)) {
+                $files = array_diff(scandir($path), ['.', '..']);
+                foreach ($files as $file) {
+                    $filePath = $path . DIRECTORY_SEPARATOR . $file;
+                    // uso unlink per eliminare i file,
+                    unlink($filePath);
+                }
+            }
+
             $interfaccia->GeneraProspetti($matricole, $cdl, $data_laurea);
 
-            inviaRisposta(true, '', 'Prospetti generati con successo (TODO)');
             break;
 
         case 'btn-apri':
@@ -109,9 +120,8 @@ try {
                 inviaErrore(400, "Dati mancanti o non validi in 'btn-apri'.");
             }
 
-            $risultati = $interfaccia->ApriProspetti($cdl);
+            $interfaccia->ApriProspetti($cdl);
 
-            inviaRisposta(true, '', 'Apertura prospetti in corso (TODO)');
             break;
 
         case 'btn-invia':

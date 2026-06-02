@@ -29,18 +29,25 @@ class InterfacciaGrafica
 
         $prospetto_commissione = new ProspettoCommissione($this->elencoMatricole, $this->cdl, $this->dataLaurea);
         $prospetto_commissione->GeneraProspettoCommissione();
+
+        $this->response(true, 'success', 'Prospetti generati con successo');
     }
 
     /**
      * Pressione del pulsante "Apri Prospetti" che avvia l'apertura dei prospetti per il corso di laurea specificato.
      */
-    public function ApriProspetti(string $cdl): array
+    public function ApriProspetti(string $cdl): void
     {
         $this->cdl = $cdl;
 
-        $response = [];
+        $file = dirname(__DIR__, 2) . '/prospetti/' . $cdl . '/commissione.pdf';
 
-        return $response;
+        if (!file_exists($file)) {
+            $this->response(false, 'error', 'Non ho trovato nessun prospetto da aprire per questo CdL');
+            return;
+        }
+
+        $this->response(true,'success', 'Prospetti aperti in una nuova scheda');
     }
 
     /**
@@ -62,4 +69,20 @@ class InterfacciaGrafica
     public function getElencoMatricole(): array { return $this->elencoMatricole; }
     public function getCdl(): string { return $this->cdl; }
     public function getDataLaurea(): string { return $this->dataLaurea; }
+
+    public function response(
+        bool $success = true,
+        string $type = '',
+        string $message = '',
+        array $data = []): void
+    {
+        echo json_encode(
+            [
+            'success' => $success,
+            'type' => $type,
+            'message' => $message,
+            'data' => $data
+            ]
+        );
+    }
 }
