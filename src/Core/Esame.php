@@ -50,31 +50,6 @@ class Esame
         $this->sovranFlag = (bool)($esameJSON['SOVRAN_FLAG'] ?? false);
         $this->lode = (bool)($this->voto > 30);
 
-        $this->validate();
-    }
-
-    /**
-     * Validazione interna per accertarsi che non ci siano errori su voti e cfu
-     */
-    protected function validate(): void
-    {
-        if ($this->cfu <= 0) {
-            throw new \InvalidArgumentException(
-                "Esame '{$this->nomeEsame}': CFU deve essere > 0, ricevuto {$this->cfu}"
-            );
-        }
-
-        if ($this->voto < 18 || $this->voto > 30) {
-            throw new \InvalidArgumentException(
-                "Esame '{$this->nomeEsame}': voto deve essere tra 18 e 30, ricevuto {$this->voto}"
-            );
-        }
-
-        if ($this->lode && $this->voto !== 30) {
-            throw new \InvalidArgumentException(
-                "Esame '{$this->nomeEsame}': la lode è possibile solo con voto 30"
-            );
-        }
     }
 
     /**

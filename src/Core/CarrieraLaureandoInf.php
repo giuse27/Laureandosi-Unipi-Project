@@ -47,8 +47,8 @@ class CarrieraLaureandoInf extends CarrieraLaureando
 
         // gestione del bonus
         // recupero anno di immatricolazione e data di chiusura dal primo esame della carriera, se presenti
-        $annoImmatricolazione = $data['Esami']['Esame'][0]['ANNO_IMM'] ?? null;
-        $dataChiusura = $data['Esami']['Esame'][0]['DATA_CHIUSURA'] ?? null;
+        $annoImmatricolazione = $carriera['Esami']['Esame'][0]['ANNO_IMM'] ?? null;
+        $dataChiusura = $carriera['Esami']['Esame'][0]['DATA_CHIUSURA'] ?? null;
         if ($annoImmatricolazione !== null && $dataChiusura !== null) {
             $this->bonus = $this->controlloBonus($annoImmatricolazione, $dataChiusura);
         } else {
@@ -83,11 +83,12 @@ class CarrieraLaureandoInf extends CarrieraLaureando
 
         /** @var Esame $esame */
         foreach ($this->esamiValidi as $esame) {
-            if (empty($esame->isFaMedia())) {
+
+            if (!$esame->isFaMedia()) {
                 // ignoro gli esami che non fanno media
                 continue;
             }
-            if (!$esame->getVoto() !== null || !is_numeric($esame->getVoto())) {
+            if (!is_numeric($esame->getVoto())) {
                 // ignoro i voti non numerici (teoricamente non dovrebbe servire)
                 continue;
             }

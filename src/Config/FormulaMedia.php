@@ -95,6 +95,7 @@ class FormulaMedia {
         $corso = $this->datiJson['corsi'][$cdlShort];
         $parKey = 'par' . $param;
         $minParam  = (float)($corso[$parKey]['min'] ?? 0);
+        return $minParam;
     }
 
     public function getMaxParam(string $cdlShort, string $param): string
@@ -102,6 +103,7 @@ class FormulaMedia {
         $corso = $this->datiJson['corsi'][$cdlShort];
         $parKey = 'par' . $param;
         $maxParam  = (float)($corso[$parKey]['max'] ?? 0);
+        return $maxParam;
     }
 
     public function getStepParam(string $cdlShort, string $param): string
@@ -109,6 +111,7 @@ class FormulaMedia {
         $corso = $this->datiJson['corsi'][$cdlShort];
         $parKey = 'par' . $param;
         $stepParam = (float)($corso[$parKey]['step'] ?? 0);
+        return $stepParam;
     }
 
     public function calcolaVotoLaurea(string $cdlShort, float $M, int $CFU, float $T = 0, float $C = 0) : float

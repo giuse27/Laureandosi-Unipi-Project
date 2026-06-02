@@ -7,7 +7,8 @@ require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
 
 use Laureandosi\Config\FileConfigurazione;
 use Laureandosi\Config\FormulaMedia;
-
+use Laureandosi\Core\ProspettoCommissione;
+use Laureandosi\Core\GestoreEmail;
 
 class InterfacciaGrafica
 {

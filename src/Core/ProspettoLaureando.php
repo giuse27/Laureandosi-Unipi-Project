@@ -61,8 +61,8 @@ class ProspettoLaureando
             mkdir($path, 0777, true);
         }
 
-        $this->ProspettoPDF = new Mpdf();
-        $this->ProspettoPDF->WriteHTML(self::getStylePDF(), \Mpdf\HTMLParserMode::HEADER_CSS);
+        $this->prospettoPDF = new Mpdf();
+        $this->prospettoPDF->WriteHTML(self::getStylePDF(), \Mpdf\HTMLParserMode::HEADER_CSS);
 
         /** INTESTAZIONE */
         $html = '<h1>' . htmlspecialchars($this->config->getNomeCdl($this->cdl)) . '</h1>';
