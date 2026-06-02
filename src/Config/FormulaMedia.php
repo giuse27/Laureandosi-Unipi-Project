@@ -68,7 +68,17 @@ class FormulaMedia {
 
     public function getCfuNecessari(string $cdlShort): int
     {
-        return (int)($dati['corsi'][$cdlShort]['totCFU']);
+        return (int)($this->datiJson['corsi'][$cdlShort]['totCFU']);
+    }
+
+    public function getServeTesi(string $cdlShort): bool
+    {
+        return (bool)($this->datiJson['corsi'][$cdlShort]['forceThesisValue']);
+    }
+
+    public function getFormulaLaurea(string $cdlShort): string
+    {
+        return (string)($this->datiJson['corsi'][$cdlShort]['formulaLaurea']);
     }
 
 }
