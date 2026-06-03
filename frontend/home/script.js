@@ -35,6 +35,12 @@ async function eseguiAzione(action) {
         return; // Ferma tutto se la validazione fallisce
     }
 
+    // L'invio ha una logica a loop separata, lo gestiamo a parte
+    if (action === 'btn-invia') {
+        await eseguiInvioProgressivo(formData.cdl);
+        return;
+    }
+
     // 3. Preparo l'operazione
     setStatus('loading', 'Operazione in corso…');
 
@@ -91,36 +97,46 @@ async function caricaCdl() {
 }
 
 // Invia UNA mail per richiesta, aggiorna messaggio, e ripete finché finished=true o error=true
-async function sendNext(form, msgElem) {
-  const fd = new FormData(form);
-  fd.set("action", "btn-invia");
-  fd.set("ajax", "1");
+async function eseguiInvioProgressivo(cdl) {
 
-  const res = await fetch("./API/GestoreRichieste.php", { method: "POST", body: fd });
+    setStatus('loading', 'Avvio invio prospetti…');
 
-  // Se il server non risponde JSON valido, catturiamo la risposta testuale per debug
-  let data;
-  try {
-    data = await res.json(); // {error, message, finished}
-    } catch (err) {
-      const text = await res.text();
-      console.error('Invalid JSON from server:', text);
-      if (msgElem) {
-        msgElem.textContent = 'Risposta server non valida: ' + text;
-      }
-      throw new Error('Invalid JSON from server');
+    // Loop che continua finché il server non segnala 'finished: true'.
+    // "while (true)" con "break" è il pattern standard quando non sappiamo
+    // a priori quante iterazioni servono — identico a Java/C++.
+    while (true) {
+
+        const body = new FormData();
+        body.append('action', 'btn-invia');
+        body.append('cdl', cdl);
+
+        try {
+            const res  = await fetch('src/API/GestoreRichieste.php', { method: 'POST', body });
+            const json = await res.json();
+
+            // json.data.finished viene da inviaRisposta(..., ['finished' => ...])
+            const finished = json.data?.finished ?? true;
+            const tipo     = json.type || (json.success ? 'success' : 'error');
+
+            setStatus(tipo, json.message ?? 'Operazione completata.');
+
+            if (finished) {
+                if (json.success) resetForm();
+                break;
+            }
+
+            // Aspetto 13 secondi prima della prossima chiamata (requisito N12).
+            // setTimeout(fn, ms) chiama fn dopo ms millisecondi.
+            // "await new Promise(...)" mette in pausa questa funzione senza
+            // bloccare il browser — equivalente di Thread.sleep() in Java
+            // ma non-bloccante per l'interfaccia grafica.
+            await new Promise(resolve => setTimeout(resolve, 13000));
+
+        } catch (err) {
+            setStatus('error', 'Errore di comunicazione: ' + err.message);
+            break;
+        }
     }
-
-  if (msgElem) {
-    msgElem.textContent = (data.message || "").trim();
-  }
-
-  if (data.error) return data;
-  if (data.finished) return data;
-
-  // attendo 15 secondi prima del prossimo invio
-  await new Promise((r) => setTimeout(r, 15000));
-  return await sendNext(form, msgElem);
 }
 
 // ==========================================

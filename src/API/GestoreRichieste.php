@@ -128,15 +128,19 @@ try {
             if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
                 inviaErrore(405, "Metodo non consentito. Usa POST.");
             }
-            
-            // validazione dei dati già effettuata in script.js
             if (empty($cdl)) {
                 inviaErrore(400, "Dati mancanti o non validi in 'btn-invia'.");
             }
 
-            $risultati = $interfaccia->InviaProspetti($cdl);
-            
-            inviaRisposta($risultati['success'], $risultati['type'], $risultati['message']);
+            $risultato = $interfaccia->InviaProspetti($cdl);
+
+            // Passo finished dentro data[] perché inviaRisposta lo mette in 'data'
+            inviaRisposta(
+                $risultato['success'],
+                $risultato['type'],
+                $risultato['message'],
+                ['finished' => $risultato['finished']]
+            );
             break;
 
         default:
