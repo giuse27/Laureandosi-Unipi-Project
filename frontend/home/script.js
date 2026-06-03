@@ -102,8 +102,6 @@ async function eseguiInvioProgressivo(cdl) {
     setStatus('loading', 'Avvio invio prospetti…');
 
     // Loop che continua finché il server non segnala 'finished: true'.
-    // "while (true)" con "break" è il pattern standard quando non sappiamo
-    // a priori quante iterazioni servono — identico a Java/C++.
     while (true) {
 
         const body = new FormData();
