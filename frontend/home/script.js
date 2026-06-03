@@ -90,6 +90,39 @@ async function caricaCdl() {
     
 }
 
+// Invia UNA mail per richiesta, aggiorna messaggio, e ripete finché finished=true o error=true
+async function sendNext(form, msgElem) {
+  const fd = new FormData(form);
+  fd.set("action", "btn-invia");
+  fd.set("ajax", "1");
+
+  const res = await fetch("./API/GestoreRichieste.php", { method: "POST", body: fd });
+
+  // Se il server non risponde JSON valido, catturiamo la risposta testuale per debug
+  let data;
+  try {
+    data = await res.json(); // {error, message, finished}
+    } catch (err) {
+      const text = await res.text();
+      console.error('Invalid JSON from server:', text);
+      if (msgElem) {
+        msgElem.textContent = 'Risposta server non valida: ' + text;
+      }
+      throw new Error('Invalid JSON from server');
+    }
+
+  if (msgElem) {
+    msgElem.textContent = (data.message || "").trim();
+  }
+
+  if (data.error) return data;
+  if (data.finished) return data;
+
+  // attendo 15 secondi prima del prossimo invio
+  await new Promise((r) => setTimeout(r, 15000));
+  return await sendNext(form, msgElem);
+}
+
 // ==========================================
 // 3. FUNZIONI DI SUPPORTO (HELPERS)
 // ==========================================
