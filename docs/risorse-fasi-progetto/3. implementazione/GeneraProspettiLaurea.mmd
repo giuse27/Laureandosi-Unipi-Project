@@ -1,0 +1,164 @@
+sequenceDiagram 
+    actor utente as Unità Didattica
+    participant gestore as GestoreRichieste.php
+    participant interfaccia as InterfacciaGrafica.php
+    participant prosc as ProspettoCommissione.php
+    participant prosl as ProspettoLaureando.php
+    participant anagrafica as AnagraficaLaureando.php
+    participant carriera as CarrieraLaureando.php
+    participant carrierainf as CarrieraLaureandoInf.php
+    participant gcs as GestioneCarrieraStudente.php
+    participant config as FileConfigurazione.php
+    participant media as FormulaMedia.php
+    participant filtro as FiltroEsami.php
+    participant info as FiltroEsamiInformatici.php
+    participant esame as Esame.php
+    participant esameinf as EsameInformatico.php
+
+    utente->>gestore: POST action='Crea'<br/>matricole, CdL, data
+    gestore->>gestore: Cancella i prospetti<br/>generati in precedenza
+    gestore->>interfaccia: GeneraProspetti(matricole, cdl, data_laurea)
+    interfaccia->>prosc: new ProspettoCommissione(elencoMatricole, cdl, dataLaurea)
+    
+    %% creo il file di configurazione
+    prosc->>config: new FileConfigurazione()
+    config->>media: new FormulaMedia(path_formule_e_mail)
+    media->>media: Recupera il contenuto<br/>dal file di configurazione
+    config->>filtro: new FiltroEsami(path_filtro_esami)
+    filtro->>filtro: Recupera il contenuto<br/>dal file di configurazione
+    config->>info: new FiltroEsamiInformatici(path_esami_informatici)
+    info->>info: Recupera il contenuto<br/>dal file di configurazione
+
+    interfaccia->>prosc: GeneraProspettoCommissione()
+    prosc->>prosc: Verifica e eventualmente crea<br/>la cartella per il cdl selezionato
+    
+    loop Per ogni matricola presente in elenco
+        prosc->>prosl: new ProspettoLaureando(matricola, cdl, dataLaurea)
+        
+        %% creo il file di configurazione
+        prosl->>config: new FileConfigurazione()
+
+        %% creo l'anagrafica
+        prosl->>anagrafica: new AnagraficaLaureando(mat)
+        prosl->>gcs: RestituisciAnagraficaStudente(matricola)
+        anagrafica->>anagrafica: salva l'anagrafica
+
+        %% creo la carriera distinguendo i due casi
+        alt Se la matricola appartiene al cdl "TInf"
+            prosl->>carrierainf: CarrieraLaureandoInf(mat, cdl, data)
+
+            %% costruisco la carriera del laureando di TInf
+            carrierainf->>carriera: parent::__construct(mat, cdl, data)
+            %% creo il file di configurazione
+            prosl->>config: new FileConfigurazione()
+            config->>media:
+            media->>media:
+            config->>filtro:
+            filtro->>filtro:
+            config->>info:
+            info->>info:
+            %% recupero la carriera
+            anagrafica->>gcs: RestituisciCarrieraStudente(matricola)
+            loop Per tutti gli esami presenti in carriera
+                alt Se l'esame è valido e SOVRAN_FLG = 0
+                    alt Se l'esame è informatico
+                        carrierainf->>esameinf: new EsameInformatico(esame, cdl, mat)
+                        esameinf->>esame: parent::__construct(esameJSON, cdl, mat)
+                        %% creo il file di configurazione
+                        prosl->>config: new FileConfigurazione()
+                        config->>media:
+                        media->>media:
+                        config->>filtro:
+                        filtro->>filtro:
+                        config->>info:
+                        info->>info:
+                        esame->>esame: Recupero le informazioni<br/>sull'esame
+                    else Se l'esame non è informatico
+                        carrierainf->>esame: new Esame(esame, cdl, mat)
+                        %% creo il file di configurazione
+                        prosl->>config: new FileConfigurazione()
+                        config->>media:
+                        media->>media:
+                        config->>filtro:
+                        filtro->>filtro:
+                        config->>info:
+                        info->>info:
+                        esame->>esame: Recupero le informazioni<br/>sull'esame
+                    end 
+                end  
+            end 
+
+            %% gestione del bonus
+            carrierainf->>carrierainf: Recupero l'anno di<br/>immatricolazione
+            carrierainf->>carrierainf: Recupero la data<br/>di chiusura
+            carrierainf->>carrierainf: controlloBonus(annoImmatricolazione, dataChiusura)
+            alt Se il laureando di TInf ha diritto al bonus
+                carrierainf->>carrierainf: applicaBonus()
+            end 
+            carrierainf->>carrierainf: getTotaleCfu()
+            carrierainf->>carrierainf: getCfuMedia()
+            carrierainf->>carrierainf: getMedia()
+            carrierainf->>carrierainf: getMediaEsamiInformatici()
+
+        else Se la matricola appartiene a un altro cdl
+            prosl->>carriera: CarrieraLaureando(mat, cdl, data)
+
+            %% costruisco la carriera del laureando non appartenente a TInf
+            prosl->>gcs: RestituisciCarrieraStudente(matricola)
+            %% creo il file di configurazione
+            prosl->>config: new FileConfigurazione()
+            config->>media:
+            media->>media:
+            config->>filtro:
+            filtro->>filtro:
+            config->>info:
+            info->>info:
+            %% recupero la carriera
+            loop Per tutti gli esami presenti in carriera
+                alt Se l'esame è valido e SOVRAN_FLG = 0
+                    carrierainf->>esame: new Esame(esame, cdl, mat)
+                    %% creo il file di configurazione
+                    prosl->>config: new FileConfigurazione()
+                    config->>media:
+                    media->>media:
+                    config->>filtro:
+                    filtro->>filtro:
+                    config->>info:
+                    info->>info:
+                    esame->>esame: Recupero le informazioni<br/>sull'esame
+                end  
+            end 
+
+            carrierainf->>carrierainf: getTotaleCfu()
+            carrierainf->>carrierainf: getCfuMedia()
+            carrierainf->>carrierainf: getMedia()
+            
+        end 
+
+        %% dopo aver costruito la carriera genero il prospetto
+        %% genero il prospetto in pdf
+        prosc->>prosl: GeneraProspetto()
+        prosl->>prosl: SalvaProspetto()
+        prosl->>prosl: Creo il prospetto con Mpdf
+        prosl->>prosl: getStypePDF()
+        prosl->>prosl: Recupera tutte le informazioni<br/>e le inserisce nel html del prospetto
+
+        %% applico al prospetto generato la tabella di simulazione
+        prosc->>prosc: GeneraTabellaVoti(prospetto)
+        prosc->>prosc: Genera la tabella dei voti<br/>sulla base dei parametri
+        prosc->>config: Accede al file di configurazione
+        config->>media: calcolaVotoLaurea(cdl, M, CFU, T, C)
+
+    end 
+
+    prosc->>prosc: Accumula info laureandi
+    prosc->>prosc: generaElencoLaureandi()
+    prosc->>prosc: Salva laureandi.json
+    prosc->>prosc: Crea MPDF commissione
+    prosc->>prosc: Aggiungi la prima pagina<br/>contenente la lista dei laureandi
+    prosc->>prosc: Aggiungi i prospetti dei laureandi
+    prosc->>prosc: Salva commissione.pdf
+
+    prosc->>interfaccia: Prospetti generati
+
+    interfaccia->>utente: Mostra "Prospetti generati con successo"
