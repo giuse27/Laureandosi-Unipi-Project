@@ -47,7 +47,8 @@ class InterfacciaGrafica
             return;
         }
 
-        $this->response(true,'success', 'Prospetti aperti in una nuova scheda');
+        $pdfUrl = '/Laureandosi-Unipi-Project/prospetti/' . $cdl . '/commissione.pdf';
+        $this->response(true, 'success', 'Prospetti aperti in una nuova scheda', ['pdfUrl' => $pdfUrl]);
     }
 
     /**

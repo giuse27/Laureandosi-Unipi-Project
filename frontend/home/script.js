@@ -52,7 +52,12 @@ async function eseguiAzione(action) {
         const tipoStatus = json.type || (json.success ? 'success' : 'error');
         setStatus(tipoStatus, json.message ?? 'Operazione completata con successo.');
 
-        // 5. Reset condizionale
+        // 5. Apertura prospetti in nuova scheda
+        if (action === 'btn-apri' && tipoStatus === 'success' && json.data?.pdfUrl) {
+            window.open(json.data.pdfUrl, '_blank');
+        }
+
+        // 6. Reset condizionale
         if (tipoStatus === 'success') {
             resetForm();
         }
