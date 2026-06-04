@@ -1,0 +1,61 @@
+{
+  "dataLaurea": "2023-01-04",
+  "matricole": {
+    "123456": {
+      "matr":"123456",
+      "cdl": "TInf",
+      "nome": "GIANLUIGI",
+      "cognome": "DONNARUMMA",
+      "expected": {
+        "media": "23.655",
+        "cfuTotali": "177",
+        "cfuMedia": "174",
+        "bonus": false,
+        "mediaInf": "23.667"
+      }
+    },
+    "234567": {
+      "matr":"234567",
+      "cdl": "MEle",
+      "nome": "ALESSANDRO",
+      "cognome": "BASTONI",
+      "expected": {
+        "media": "24.559",
+        "cfuTotali": "102",
+        "cfuMedia": "102"
+      }
+    },
+    "345678": {
+      "matr":"345678",
+      "cdl": "TInf",
+      "nome": "NICCOLO",
+      "cognome": "BARELLA",
+      "expected": {
+        "media": "25.564",
+        "cfuTotali": "177",
+        "cfuMedia": "165",
+        "bonus": true,
+        "mediaInf": "25.75"
+      }
+    },
+    "456789": {
+      "matr":"456789",
+      "cdl": "TTel",
+      "nome": "MATTEO",
+      "cognome": "POLITANO",
+      "expected": {
+        "media": "32.625",
+        "cfuTotali": "96",
+        "cfuMedia": "96"
+      }
+    },
+    "567890": {
+      "matr":"567890",
+      "cdl": "MCyb",
+      "nome": "FRANCESCO",
+      "cognome": "ACERBI",
+      "shouldFail": true,
+      "errorMessage": "Errore: CdL non supportato"
+    }
+  }
+}
