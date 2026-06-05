@@ -1,0 +1,20 @@
+sequenceDiagram 
+    actor utente as Unità Didattica
+    participant script as script.js
+    participant gestore as GestoreRichieste.php
+    participant interfaccia as InterfacciaGrafica.php
+    participant prosc as ProspettoCommissione.php
+    participant prosl as ProspettoLaureando.php
+    participant anagrafica as AnagraficaLaureando.php
+    participant carriera as CarrieraLaureando.php
+    participant carrierainf as CarrieraLaureandoInf.php
+    participant gcs as GestioneCarrieraStudente.php
+    participant config as FileConfigurazione.php
+    participant media as FormulaMedia.php
+    participant filtro as FiltroEsami.php
+    participant info as FiltroEsamiInformatici.php
+    participant esame as Esame.php
+    participant esameinf as EsameInformatico.php
+
+    utente->>script: L'utente clicca<br/>il tasto 'Apri Prospetti'
+    script->>gestore: POST action='Invia'<br/>matricole, CdL, data
