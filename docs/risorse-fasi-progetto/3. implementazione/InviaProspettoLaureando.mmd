@@ -4,30 +4,30 @@ sequenceDiagram
     participant gestore as GestoreRichieste.php
     participant interfaccia as InterfacciaGrafica.php
     participant email as GestoreEmail.php
-    %%participant prosc as ProspettoCommissione.php
-    %%participant prosl as ProspettoLaureando.php
-    %%participant anagrafica as AnagraficaLaureando.php
-    %%participant carriera as CarrieraLaureando.php
-    %%participant carrierainf as CarrieraLaureandoInf.php
-    %%participant gcs as GestioneCarrieraStudente.php
     participant config as FileConfigurazione.php
     participant media as FormulaMedia.php
-    %%participant esame as Esame.php
-    %%participant esameinf as EsameInformatico.php
 
+    activate utente 
     utente->>script: L'utente clicca<br/>il tasto 'Invia Prospetti'
+    activate script 
+    deactivate utente 
     script->>script: Validazione input
     script->>script: eseguiInvioProgressivo(formData.cdl)
 
     loop Finchè il server non imposta 'finished' = true
         script->>gestore: POST action='btn-invia'<br/>matricole, CdL, data
+        activate gestore 
+        deactivate script 
 
         gestore->>interfaccia: InviaProspetti(cdl)
+        activate interfaccia 
+        deactivate gestore 
 
         %% InviaProspetti (interfaccia)
         interfaccia->>interfaccia: Verifica la presenza dei prospetti<br/>e del file 'laureandi.json'
         alt Se le condizioni non sono verificate
             interfaccia->>gestore: return 'Non ci sono prospetti<br/>da inviare per il CdL selezionato.'
+            activate gestore 
         end 
         alt Se la coda di invio non esiste
             interfaccia->>interfaccia: Costruisco la coda di invio
@@ -40,17 +40,29 @@ sequenceDiagram
             interfaccia->>gestore: return 'Email mancante per la<br/>matricola $matricola. Invio interrotto.'
         end 
         interfaccia->>email: new GestoreEmail(cdl)
+        activate email 
         %% creo il file di configurazione
         email->>config: new FileConfigurazione()
+        activate config 
+        deactivate email 
         config->>media: new FormulaMedia(path_formule_e_mail)
+        activate media 
+        deactivate config 
         media->>media: Recupera il contenuto<br/>dal file di configurazione
+        deactivate media 
+        activate email 
         email->>email: Configuro l'email
+        deactivate email 
         interfaccia->>email: InviaEmailConAllegato(emailDestinatario, nomeFile)
+        activate email 
+        deactivate interfaccia 
         email->>email: new PHPMailer(true)
         email->>email: Verifico la presenza dell'allegato
         email->>email: Preparo la mail
         email->>email: Invio la mail
         email->>interfaccia: JSON con 'Email inviata con successo a $destinatario.'
+        activate interfaccia 
+        deactivate email 
         alt Se ci sono stati problemi nell'invio
             interfaccia->>gestore: return esito JSON
         end 
@@ -60,10 +72,15 @@ sequenceDiagram
             interfaccia->>gestore: return 'Invio Completato'
         else 'finished' = false
             interfaccia->>gestore: return 'Inviato il prospetto n° x di X'
+            deactivate interfaccia 
         end 
 
         gestore->>script: Invia un JSON contenente la risposta
+        activate script 
+        deactivate gestore 
         script->>utente: Mostra il messaggio<br/>contenuto nel JSON
+        activate utente 
+        deactivate utente 
 
         alt Se 'finished' = true
             script->>script: Interrompo il ciclo
@@ -73,4 +90,5 @@ sequenceDiagram
         script->>script: Attendo 13 secondi per<br/>l'invio del prossimo prospetto
     end 
 
+    deactivate script 
 
