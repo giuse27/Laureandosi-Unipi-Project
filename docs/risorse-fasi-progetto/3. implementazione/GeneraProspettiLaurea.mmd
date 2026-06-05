@@ -15,7 +15,7 @@ sequenceDiagram
     participant esame as Esame.php
     participant esameinf as EsameInformatico.php
 
-    utente->>gestore: POST action='Crea'<br/>matricole, CdL, data
+    utente->>gestore: POST action='btn-crea'<br/>matricole, CdL, data
     gestore->>gestore: Cancella i prospetti<br/>generati in precedenza
     gestore->>interfaccia: GeneraProspetti(matricole, cdl, data_laurea)
     interfaccia->>prosc: new ProspettoCommissione(elencoMatricole, cdl, dataLaurea)

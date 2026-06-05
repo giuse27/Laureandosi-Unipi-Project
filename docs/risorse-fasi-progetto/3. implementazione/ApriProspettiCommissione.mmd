@@ -6,7 +6,7 @@ sequenceDiagram
 
     utente->>script: L'utente clicca<br/>il tasto 'Apri Prospetti'
     script->>script: Validazione input
-    script->>gestore: POST action='Invia'<br/>matricole, CdL, data
+    script->>gestore: POST action='btn-apri'<br/>matricole, CdL, data
 
     gestore->>interfaccia: ApriProspetti(cdl)
     interfaccia->>interfaccia: Verifico la presenza<br/>del file 'commissione.pdf'

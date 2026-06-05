@@ -3,18 +3,74 @@ sequenceDiagram
     participant script as script.js
     participant gestore as GestoreRichieste.php
     participant interfaccia as InterfacciaGrafica.php
-    participant prosc as ProspettoCommissione.php
-    participant prosl as ProspettoLaureando.php
-    participant anagrafica as AnagraficaLaureando.php
-    participant carriera as CarrieraLaureando.php
-    participant carrierainf as CarrieraLaureandoInf.php
-    participant gcs as GestioneCarrieraStudente.php
+    participant email as GestoreEmail.php
+    %%participant prosc as ProspettoCommissione.php
+    %%participant prosl as ProspettoLaureando.php
+    %%participant anagrafica as AnagraficaLaureando.php
+    %%participant carriera as CarrieraLaureando.php
+    %%participant carrierainf as CarrieraLaureandoInf.php
+    %%participant gcs as GestioneCarrieraStudente.php
     participant config as FileConfigurazione.php
     participant media as FormulaMedia.php
-    participant filtro as FiltroEsami.php
-    participant info as FiltroEsamiInformatici.php
-    participant esame as Esame.php
-    participant esameinf as EsameInformatico.php
+    %%participant esame as Esame.php
+    %%participant esameinf as EsameInformatico.php
 
-    utente->>gestore: POST action='Crea'<br/>matricole, CdL, data
+    utente->>script: L'utente clicca<br/>il tasto 'Invia Prospetti'
+    script->>script: Validazione input
+    script->>script: eseguiInvioProgressivo(formData.cdl)
+
+    loop Finchè il server non imposta 'finished' = true
+        script->>gestore: POST action='btn-invia'<br/>matricole, CdL, data
+
+        gestore->>interfaccia: InviaProspetti(cdl)
+
+        %% InviaProspetti (interfaccia)
+        interfaccia->>interfaccia: Verifica la presenza dei prospetti<br/>e del file 'laureandi.json'
+        alt Se le condizioni non sono verificate
+            interfaccia->>gestore: return 'Non ci sono prospetti<br/>da inviare per il CdL selezionato.'
+        end 
+        alt Se la coda di invio non esiste
+            interfaccia->>interfaccia: Costruisco la coda di invio
+        end 
+        interfaccia->>interfaccia: Leggo la coda
+    
+        %% meccanismo di invio del prossimo prospetto
+        interfaccia->>interfaccia: Recupero le informazioni sul<br/>prossimo invio
+        alt Se manca la mail del destinatario in laureandi.json
+            interfaccia->>gestore: return 'Email mancante per la<br/>matricola $matricola. Invio interrotto.'
+        end 
+        interfaccia->>email: new GestoreEmail(cdl)
+        %% creo il file di configurazione
+        email->>config: new FileConfigurazione()
+        config->>media: new FormulaMedia(path_formule_e_mail)
+        media->>media: Recupera il contenuto<br/>dal file di configurazione
+        email->>email: Configuro l'email
+        interfaccia->>email: InviaEmailConAllegato(emailDestinatario, nomeFile)
+        email->>email: new PHPMailer(true)
+        email->>email: Verifico la presenza dell'allegato
+        email->>email: Preparo la mail
+        email->>email: Invio la mail
+        email->>interfaccia: JSON con 'Email inviata con successo a $destinatario.'
+        alt Se ci sono stati problemi nell'invio
+            interfaccia->>gestore: return esito JSON
+        end 
+        interfaccia->>interfaccia: Cancello il pdf inviato
+        interfaccia->>interfaccia: Aggiorno la coda
+        alt Se 'finished' = true
+            interfaccia->>gestore: return 'Invio Completato'
+        else 'finished' = false
+            interfaccia->>gestore: return 'Inviato il prospetto n° x di X'
+        end 
+
+        gestore->>script: Invia un JSON contenente la risposta
+        script->>utente: Mostra il messaggio<br/>contenuto nel JSON
+
+        alt Se 'finished' = true
+            script->>script: Interrompo il ciclo
+            script->>script: Resetto il form
+        end 
+
+        script->>script: Attendo 13 secondi per<br/>l'invio del prossimo prospetto
+    end 
+
 
