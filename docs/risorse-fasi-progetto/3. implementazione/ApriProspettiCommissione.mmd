@@ -4,17 +4,29 @@ sequenceDiagram
     participant gestore as GestoreRichieste.php
     participant interfaccia as InterfacciaGrafica.php
 
-    utente->>script: L'utente clicca<br/>il tasto 'Apri Prospetti'
+    activate utente 
+    utente->>script: L'utente clicca<br/>il tasto 'Apri Prospetti' 
+    activate script 
+    deactivate utente 
     script->>script: Validazione input
     script->>gestore: POST action='btn-apri'<br/>matricole, CdL, data
+    activate gestore 
+    deactivate script 
 
     gestore->>interfaccia: ApriProspetti(cdl)
+    activate interfaccia 
+    deactivate gestore 
     interfaccia->>interfaccia: Verifico la presenza<br/>del file 'commissione.pdf'
     alt Se il file 'commissione.pdf' non esiste
+        activate utente 
         interfaccia->>utente: Mostra "Nessun prospetto da aprire per questo CdL" 
     end 
 
     interfaccia->>script: '/Laureandosi-Unipi-Project/prospetti/' . $cdl . '/commissione.pdf'
+    activate script 
+    deactivate interfaccia 
 
     script->>utente: I prospetti vengono<br/>aperti in una nuova scheda
     script->>script: Resetto il form
+    deactivate utente 
+    deactivate script 
