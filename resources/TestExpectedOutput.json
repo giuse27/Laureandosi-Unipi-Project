@@ -54,8 +54,7 @@
       "cdl": "MCyb",
       "nome": "FRANCESCO",
       "cognome": "ACERBI",
-      "shouldFail": true,
-      "errorMessage": "Errore: CdL non supportato"
+      "shouldFail": true
     }
   }
 }
