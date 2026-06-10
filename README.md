@@ -64,6 +64,9 @@ La documentazione è presente nella cartella `docs/` ma per semplicità riporto 
 
 ### Manuale Utente
 
+> [!attention] ATTENZIONE  
+> Nel manuale utente non è specificato ma per inviare le mail è necessario essere collegati alla WiFi di UniPi oppure utilizzare la VPN di Ateneo ([le istruzioni le trovi qui](https://it.unipi.it/configurazioni/sicurezza-e-privacy/vpn-di-ateneo/)).
+
 [**Clicca qui per aprire il manuale utente**](docs/risorse-fasi-progetto/5.%20manuali/Manuale%20Utente.pdf)
 
 ### Manuale di Installazione
