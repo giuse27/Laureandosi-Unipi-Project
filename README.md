@@ -60,29 +60,29 @@ La documentazione è presente nella cartella `docs/` ma per semplicità riporto 
 
 ### Documentazione del progetto
 
-[**Clicca qui per aprire la documentazione del progetto**](docs\Vaglica.pdf)
+[**Clicca qui per aprire la documentazione del progetto**](docs/Vaglica.pdf)
 
 ### Manuale Utente
 
-[**Clicca qui per aprire il manuale utente**](docs\risorse-fasi-progetto\5.%20manuali\Manuale%20Utente.pdf)
+[**Clicca qui per aprire il manuale utente**](docs/risorse-fasi-progetto/5.%20manuali/Manuale%20Utente.pdf)
 
 ### Manuale di Installazione
 
-[**Clicca qui per aprire il manuale di installazione**](docs\risorse-fasi-progetto\5.%20manuali\Manuale%20di%20Installazione.pdf)
+[**Clicca qui per aprire il manuale di installazione**](docs/risorse-fasi-progetto/5.%20manuali/Manuale%20di%20Installazione.pdf)
 
 ### Manuale di Configurazione
 
-[**Clicca qui per aprire il manuale di configurazione**](docs\risorse-fasi-progetto\5.%20manuali\Manuale%20di%20Configurazione.pdf)
+[**Clicca qui per aprire il manuale di configurazione**](docs/risorse-fasi-progetto/5.%20manuali/Manuale%20di%20Configurazione.pdf)
 
 ### Manuale di Test
 
-[**Clicca qui per aprire il manuale di test**](docs\risorse-fasi-progetto\5.%20manuali\Manuale%20di%20Test.pdf)
+[**Clicca qui per aprire il manuale di test**](docs/risorse-fasi-progetto/5.%20manuali/Manuale%20di%20Test.pdf)
 
 ## Tutorial per ISW e per Laureandosi
 
 Data la natura didattica del progetto e le difficoltà che personalmente ho trovato lungo la realizzazione, ho deciso di realizzare una raccolta di tutorial per ingegneria del software e per la replica del progetto stesso in autonomia.
 
-Trovi i tutorial in `docs/tutorial/` oppure [**clicca qui per aprire l'indice della raccolta**](docs\tutorial\TUTORIAL.md).
+Trovi i tutorial in `docs/tutorial/` oppure [**clicca qui per aprire l'indice della raccolta**](docs/tutorial/TUTORIAL.md).
 
 ## 💖 Supporta il progetto
 
