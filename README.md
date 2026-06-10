@@ -1,6 +1,6 @@
 # Laureandosi-Unipi-Project
 
-[![GitHub stars](https://img.shields.io/github/stars/giuse27/Laureandosi-Unipi-Project?style=social)](https://github.com/giuse27/Laureandosi-Unipi-Project) ![License](https://img.shields.io/github/license/giuse27/Laureandosi-Unipi-Project) ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg) ![GitHub giuse27](https://img.shields.io/badge/GitHub-giuse27-blue?logo=github&link=https%3A%2F%2Fgithub.com%2Fgiuse27)
+[![GitHub stars](https://img.shields.io/github/stars/giuse27/Laureandosi-Unipi-Project?style=social)](https://github.com/giuse27/Laureandosi-Unipi-Project) ![License](https://img.shields.io/github/license/giuse27/Laureandosi-Unipi-Project) ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg) [![GitHub giuse27](https://img.shields.io/badge/GitHub-giuse27-blue?logo=github)](https://github.com/giuse27)
 
 - [Laureandosi-Unipi-Project](#laureandosi-unipi-project)
   - [Descrizione del progetto](#descrizione-del-progetto)
