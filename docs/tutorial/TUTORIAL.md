@@ -4,7 +4,8 @@
   - [Introduzione](#introduzione)
   - [Struttura della raccolta](#struttura-della-raccolta)
     - [Modulo "Analisi"](#modulo-analisi)
-    - [Modulo "Implementazione"](#modulo-implementazione)
+    - [Modulo "Progetto"](#modulo-progetto)
+    - [Ultimi step del Progetto](#ultimi-step-del-progetto)
 
 ## Introduzione
 
@@ -25,13 +26,25 @@ Nei seguenti paragrafi sono elencati i tutorial che ho realizzato. Ogni tutorial
 
 ### Modulo "Analisi"
 
-* [01 - Diagramma dei casi d'uso.md](analisi/01%20-%20Diagramma%20dei%20casi%20d’uso.md)
-* [02 - Casi d'uso dettagliati.md](analisi/02%20-%20Casi%20d’uso%20dettagliati.md)
-* [03 - CRC card.md](analisi/03%20-%20CRC%20card.md)
-* [04 - Diagramma di classe.md](analisi/04%20-%20Diagramma%20di%20classe.md)
-* [05 - Diagrammi di sequenza.md](analisi/05%20-%20Diagrammi%20di%20sequenza.md)
+* [**01 - Diagramma dei casi d'uso.md**](analisi/01%20-%20Diagramma%20dei%20casi%20d’uso.md)
+* [**02 - Casi d'uso dettagliati.md**](analisi/02%20-%20Casi%20d’uso%20dettagliati.md)
+* [**03 - CRC card.md**](analisi/03%20-%20CRC%20card.md)
+* [**04 - Diagramma di classe.md**](analisi/04%20-%20Diagramma%20di%20classe.md)
+* [**05 - Diagrammi di sequenza.md**](analisi/05%20-%20Diagrammi%20di%20sequenza.md)
 
-### Modulo "Implementazione"
+### Modulo "Progetto"
 
-* [01 - Creazione iniziale del sito](implementazione/01%20-%20Creazione%20iniziale%20del%20sito.md)
+* [**01 - Creazione iniziale del sito**](progetto/01%20-%20Creazione%20iniziale%20del%20sito.md)
+* [**02 - Front-end del sito**](progetto/02%20-%20Front-end%20del%20sito.md)
+* [**03 - Realizzazione del back-end**](progetto/03%20-%20Realizzazione%20del%20back-end.md)
 
+### Ultimi step del Progetto
+
+> Dopo il tutorial 03 del modulo di progetto non ho più realizzato tutorial in quanto a questo punto ogni progetto sarà diverso (più o meno) e soprattutto, arrivati a questo punto non ci sono parti insidiose o che necessitano di una guida, visto che ormai si procede abbastanza spediti.
+
+Riepilogo qui gli ultimi step per concludere il progetto:
+
+* **Diagramma di classe di progetto** (modulo progetto). Si realizza a partire dal tool sul sito del prof. cimino (**phUML**), basta solo generarlo con quel tool ed esportarlo nella documentazione.
+* **Diagrammi di sequenza di progetto** (modulo progetto). Sono concettualmente simili a quelli già visti nell'analisi ma si realizzano a partire dal codice (e quindi sulle freccette ci saranno i nomi delle funzioni per esempio). Per questi è sufficiente aprire PHP Storm, considerare un caso d'uso e risalire a tutte le chiamate di funzione o azioni che vengono eseguite.
+* **Diagramma di dislocazione** (modulo implementazione). Questo diagramma è semplice da realizzare ed è molto intuitivo, basta seguire un [**esempio come il mio**](../risorse-fasi-progetto/4.%20implementazione/diagramma_di_dislocazione.svg) e adattarlo alla struttura del proprio progetto.
+* **Manuali** (modulo manuali). Si tratta solo di scrivere i manuali del sistema: manuale Utente, di Installazione, di Configurazione e di Test. 
