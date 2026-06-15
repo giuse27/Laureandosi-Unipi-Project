@@ -58,6 +58,9 @@ Laureandosi-Unipi-Project è un simulatore di **prospetti di laurea** che **gene
 
 La documentazione è presente nella cartella `docs/` ma per semplicità riporto qui sotto i link diretti ai pdf
 
+> [!attention] ATTENZIONE  
+> Se vuoi **replicare** o anche solo **testare** questo progetto devi modificare il file [`resources/AnagraficaStudenti.json`](./resources/AnagraficaStudenti.json) modificando la mia mail `g.vaglica@studenti.unipi.it` con la tua mail dell'università di Pisa.
+
 ### Documentazione del progetto
 
 [**Clicca qui per aprire la documentazione del progetto**](docs/Vaglica.pdf)
